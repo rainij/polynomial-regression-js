@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/Rainij/regression-multivariate-polynomial/issues"
   },
-  "homepage": "https://github.com/Rainij/regression-multivariate-polynomial#readme"
+  "homepage": "https://github.com/Rainij/regression-multivariate-polynomial#readme",
+  "devDependencies": {
+    "typescript": "^3.5.1"
+  }
 }
