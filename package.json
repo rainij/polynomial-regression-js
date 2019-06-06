@@ -1,0 +1,27 @@
+{
+  "name": "regression-multivariate-polynomial",
+  "version": "0.0.0",
+  "description": "Library for polynomial regression, written in TypeScript.",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rainij/regression-multivariate-polynomial.git"
+  },
+  "keywords": [
+    "regression",
+    "ml",
+    "machine-learning",
+    "polynomial",
+    "typescript"
+  ],
+  "author": "Reinhard Stahn",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/Rainij/regression-multivariate-polynomial/issues"
+  },
+  "homepage": "https://github.com/Rainij/regression-multivariate-polynomial#readme"
+}

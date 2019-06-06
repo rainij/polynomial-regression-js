@@ -1,0 +1,15 @@
+### folders
+.vscode
+node_modules
+dist/*
+
+### matching
+*.log
+*.tgz
+
+### files
+package-lock.json
+
+### inverse
+!dist/.gitkeep
+!dist/readme.md
