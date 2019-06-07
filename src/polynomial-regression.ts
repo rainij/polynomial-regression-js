@@ -19,7 +19,6 @@ export class PolynomialRegressor {
   }
 
   fit(x: number[][], y: number[][]) { // TODO error handling
-    console.log("start fit");
     let xpoly = this.polyFeatures.fitTransform(x);
     this.weights = new SVD(xpoly, { autoTranspose: true }).solve(new Matrix(y)).to2DArray();
   }

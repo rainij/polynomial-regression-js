@@ -4,7 +4,7 @@
   "description": "Library for polynomial regression, written in TypeScript.",
   "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "build": "tsc"
   },
   "repository": {
@@ -25,6 +25,9 @@
   },
   "homepage": "https://github.com/Rainij/regression-multivariate-polynomial#readme",
   "devDependencies": {
+    "@types/jest": "^24.0.13",
+    "jest": "^24.8.0",
+    "ts-jest": "^24.0.2",
     "typescript": "^3.5.1"
   },
   "dependencies": {
