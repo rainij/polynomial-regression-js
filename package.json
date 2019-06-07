@@ -27,5 +27,7 @@
   "devDependencies": {
     "typescript": "^3.5.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "ml-matrix": "^6.0.0"
+  }
 }
