@@ -4,7 +4,7 @@
   "description": "Library for polynomial regression, written in TypeScript.",
   "main": "dist/index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --verbose",
     "build": "tsc"
   },
   "repository": {

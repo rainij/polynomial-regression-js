@@ -14,6 +14,9 @@ function fitAndTestPolynomialRegressor(xtrain: number[][], ytrain: number[][],
 
   const ypredict = polyReg.predict(xtest);
 
+  expect(ytest.length).toStrictEqual(ypredict.length);
+  expect(ytest[0].length).toStrictEqual(ypredict[0].length);
+
   for (let i=0; i < ytest.length; ++i) {
     for (let j=0; j < ytest[0].length; ++j) {
       expect(ypredict[i][j]).toBeCloseTo(ytest[i][j], numDigits);
