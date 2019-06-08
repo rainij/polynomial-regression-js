@@ -1,11 +1,14 @@
-import { combinations_with_replacement } from './util/itertools'
+import { combinations, combinations_with_replacement } from './util/itertools'
 
 export class PolynomialFeatures {
   private _nFeaturesIn: number;
+  private combinations: <T>(iterable: Iterable<T>, degree: number) => IterableIterator<T[]>;
 
   constructor(private degree: number,
     private include_bias: boolean = true,
-    /* TODO private interaction_only: boolean = false */) {
+    interaction_only: boolean = false ) {
+
+      this.combinations = interaction_only ? combinations : combinations_with_replacement;
   }
 
   get nFeaturesIn() {
@@ -26,7 +29,7 @@ export class PolynomialFeatures {
       }
       let yi: number[] = [];
       const ximod = this.include_bias ? xi.concat([1]) : xi.concat();
-      for (let comb of combinations_with_replacement(ximod, this.degree)) {
+      for (let comb of this.combinations(ximod, this.degree)) {
         yi.push(comb.reduce((p,c) => p*=c, 1));
       }
       y.push(yi)
