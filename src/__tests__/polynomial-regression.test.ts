@@ -1,11 +1,15 @@
 import { PolynomialRegressor } from '../index'
 
+import * as data1 from '../../data/example1'
+import * as data2 from '../../data/example2'
+
 /// Auxiliary function
 
 function fitAndTestPolynomialRegressor(xtrain: number[][], ytrain: number[][],
-  xtest: number[][], ytest: number[][], degree: number, numDigits: number = 6) {
+  xtest: number[][], ytest: number[][], degree: number, include_bias: boolean = true,
+  numDigits: number = 6) {
 
-  let polyReg = new PolynomialRegressor(degree);
+  let polyReg = new PolynomialRegressor(degree, include_bias);
   polyReg.fit(xtrain, ytrain);
 
   const ypredict = polyReg.predict(xtest);
@@ -61,5 +65,45 @@ describe('Exactly polynomial laws and small data sets', () => {
     const ytest = [[4156.8001], [-19018.2536], [5.9011000000000005]];
 
     fitAndTestPolynomialRegressor(xtrain, ytrain, xtest, ytest, degree);
+  });
+});
+
+describe('Exactly polynomial laws, no bias and small data sets', () => {
+  it('Univariate, degree 2', () => {
+    let degree = 2;
+
+    // y = -3*x**2
+    const xtrain = [[0], [1], [2]]; // more than enough data
+    const ytrain = [[0], [-3], [-12]];
+
+    const xtest = [[3]];
+    const ytest = [[-27]];
+
+    fitAndTestPolynomialRegressor(xtrain, ytrain, xtest, ytest, degree, false);
+  });
+
+  it('(3,2)-variate, degree 1', () => {
+    let degree = 1;
+
+    // y1 = x1 + x2 + 2*x3, y2 = -x1 + 6*x2
+    const xtrain = [[0,1,2], [-4,1,0], [0,1,-2]]; // exactly enough data
+    const ytrain = [[5,6], [-3,10], [-3,6]];
+
+    const xtest = [[0,0,0], [0,0,1], [0,1,0], [1,0,0]];
+    const ytest = [[0,0], [2,0], [1,6], [1,-1]];
+
+    fitAndTestPolynomialRegressor(xtrain, ytrain, xtest, ytest, degree, false);
+  });
+});
+
+describe('Artificial polynomial data with noise (few houndred samples)', () => {
+  it(`(3,1)-variate, degree ${data1.degree}, number samples ${data1.trainInput.length}`, () => {
+    fitAndTestPolynomialRegressor(data1.trainInput, data1.trainOutput,
+      data1.testInput, data1.testPredicted, data1.degree);
+  });
+
+  it(`(4,1)-variate, degree ${data2.degree}, number samples ${data2.trainInput.length}`, () => {
+    fitAndTestPolynomialRegressor(data2.trainInput, data2.trainOutput,
+      data2.testInput, data2.testPredicted, data2.degree);
   });
 });
