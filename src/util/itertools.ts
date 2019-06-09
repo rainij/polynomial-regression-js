@@ -21,9 +21,31 @@ export function* combinations_with_replacement<T>(iterable: Iterable<T>, degree:
   }
 }
 
+/**
+ * Yield all subsequences of length 'degree' from a given sequence (with length >= degree).
+ *
+ * For example if the iterable is the array [1,2,3,4] and degree = 2
+ * the resulting iterable yields all subsequences of length 2:
+ *
+ *   [1,2], [1,3], [1,4], [2,3], [2,4], [3,4].
+ *
+ * The Ordering is given as follows:
+ * Start with the degree-subsequence with minimal indices (here [1,2]).
+ * Repeat the following:
+ *   Generate the next subsequence by selecting the right-most index
+ *   which can be incremented by 1 without making the new subsequence invalid (and do that),
+ * until this is impossible (then all possible subsequences of lenght degree are visited).
+ *
+ * See also:
+ * https://en.wikipedia.org/wiki/Combination#Enumerating_k-combinations
+ *
+ * Return null in case degree > length of iterable
+ *
+ * @param iterable The finite sequence
+ * @param degree The length of the subsequences
+ */
 export function* combinations<T>(iterable: Iterable<T>, degree: number) {
   const pool = Array.from(iterable);
-  const maxi = pool.length-1;
 
   if (degree > pool.length) return null;
 
