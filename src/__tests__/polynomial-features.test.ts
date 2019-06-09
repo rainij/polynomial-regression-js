@@ -13,7 +13,7 @@ function fitTransformPolynomialFeatures(degree: number, include_bias: boolean, i
 
 /// Following the actual tests
 
-describe('Tests for class PolynomialFeatures', () => {
+describe('Tests for fit and transform methods', () => {
   it('Two features, degree 2, include bias, full', () => {
     const degree = 2;
     const include_bias = true;
@@ -52,5 +52,23 @@ describe('Tests for class PolynomialFeatures', () => {
     const desiredOutput = [[35, 21, 14, 7, 15, 10, 5, 6, 3, 2]];
 
     fitTransformPolynomialFeatures(degree, include_bias, interaction_only, input, desiredOutput);
+  });
+});
+
+describe('Misc', () => {
+  it('Save configuration and load again', () => {
+    const input = [[7,5,3,2]];
+    const desiredOutput = [[105, 70, 42, 30]];
+
+    let polyFeatures = new PolynomialFeatures(3, false, true);
+    polyFeatures.fit(input);
+
+    const config = polyFeatures.config;
+
+    let newPolyFeatures = new PolynomialFeatures();
+    newPolyFeatures.fromConfig(config);
+    const output = newPolyFeatures.transform(input)
+
+    expect(output).toStrictEqual(desiredOutput)
   });
 });

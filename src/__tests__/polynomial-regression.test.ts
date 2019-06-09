@@ -13,7 +13,10 @@ function fitAndTestPolynomialRegressor(xtrain: number[][], ytrain: number[][],
   polyReg.fit(xtrain, ytrain);
 
   const ypredict = polyReg.predict(xtest);
+  expectToBeCloseTo(ypredict, ytest, numDigits);
+}
 
+function expectToBeCloseTo(ypredict: number[][], ytest: number[][], numDigits: number = 6) {
   expect(ytest.length).toStrictEqual(ypredict.length);
   expect(ytest[0].length).toStrictEqual(ypredict[0].length);
 
@@ -110,3 +113,19 @@ describe('Artificial polynomial data with noise (few houndred samples)', () => {
       data2.testInput, data2.testPredicted, data2.degree);
   });
 });
+
+describe('Misc', () => {
+  it('Save configuration and load again', () => {
+    let polyReg = new PolynomialRegressor(data1.degree);
+    polyReg.fit(data1.trainInput, data1.trainOutput);
+
+    const config = polyReg.config;
+
+    let newPolyReg = new PolynomialRegressor();
+    newPolyReg.fromConfig(config);
+    const ypredict = newPolyReg.predict(data1.testInput)
+
+    expectToBeCloseTo(ypredict, data1.testPredicted);
+  });
+});
+
