@@ -8,9 +8,9 @@ export class PolynomialRegressor {
   private _polyFeatures: PolynomialFeatures;
   private _weights: number[][];
 
-  constructor(degree?: number, include_bias: boolean = true, interaction_only: boolean = false) {
+  constructor(degree?: number, homogeneous: boolean = false, interactionOnly: boolean = false) {
     if (degree) {
-      this._polyFeatures = new PolynomialFeatures(degree, include_bias, interaction_only)
+      this._polyFeatures = new PolynomialFeatures(degree, homogeneous, interactionOnly)
     }
   }
 

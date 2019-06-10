@@ -6,17 +6,19 @@ import * as data2 from '../../data/example2'
 /// Auxiliary function
 
 function fitAndTestPolynomialRegressor(xtrain: number[][], ytrain: number[][],
-  xtest: number[][], ytest: number[][], degree: number, include_bias: boolean = true,
-  numDigits: number = 6) {
+xtest: number[][], ytest: number[][], degree: number,
+homogeneous: boolean = false, numDigits: number = 6) {
 
-  let polyReg = new PolynomialRegressor(degree, include_bias);
+  let polyReg = new PolynomialRegressor(degree, homogeneous);
   polyReg.fit(xtrain, ytrain);
 
   const ypredict = polyReg.predict(xtest);
   expectToBeCloseTo(ypredict, ytest, numDigits);
 }
 
-function expectToBeCloseTo(ypredict: number[][], ytest: number[][], numDigits: number = 6) {
+function expectToBeCloseTo(ypredict: number[][], ytest: number[][],
+numDigits: number = 6) {
+
   expect(ytest.length).toStrictEqual(ypredict.length);
   expect(ytest[0].length).toStrictEqual(ypredict[0].length);
 
@@ -85,7 +87,7 @@ describe('Exactly polynomial laws, no bias and small data sets', () => {
     const xtest = [[3]];
     const ytest = [[-27]];
 
-    fitAndTestPolynomialRegressor(xtrain, ytrain, xtest, ytest, degree, false);
+    fitAndTestPolynomialRegressor(xtrain, ytrain, xtest, ytest, degree, true);
   });
 
   it('(3,2)-variate, degree 1', () => {
@@ -98,7 +100,7 @@ describe('Exactly polynomial laws, no bias and small data sets', () => {
     const xtest = [[0,0,0], [0,0,1], [0,1,0], [1,0,0]];
     const ytest = [[0,0], [2,0], [1,6], [1,-1]];
 
-    fitAndTestPolynomialRegressor(xtrain, ytrain, xtest, ytest, degree, false);
+    fitAndTestPolynomialRegressor(xtrain, ytrain, xtest, ytest, degree, true);
   });
 });
 
