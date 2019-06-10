@@ -1,4 +1,4 @@
-import { combinations, combinations_with_replacement } from './util/itertools'
+import { combinations, combinations_with_repitition } from './util/itertools'
 
 export type PolynomialFeaturesConfig = { degree: number, include_bias: boolean,
   interaction_only: boolean, nFeaturesIn: number };
@@ -7,7 +7,8 @@ export class PolynomialFeatures {
   private _degree: number;
   private _nFeaturesIn: number;
   private _include_bias: boolean;
-  private _combinations: <T>(iterable: Iterable<T>, degree: number) => IterableIterator<T[]>;
+  private _combinations:
+            <T>(iterable: Iterable<T>, degree: number) => IterableIterator<T[]>;
 
   constructor(degree?: number, include_bias: boolean = true,
     interaction_only: boolean = false ) {
@@ -15,7 +16,8 @@ export class PolynomialFeatures {
     if (degree) {
       this._degree = degree;
       this._include_bias = include_bias;
-      this._combinations = interaction_only ? combinations : combinations_with_replacement;
+      this._combinations = interaction_only ? combinations
+                                            : combinations_with_repitition;
     }
   }
 
@@ -43,7 +45,8 @@ export class PolynomialFeatures {
   fromConfig(config: PolynomialFeaturesConfig) {
     this._degree = config.degree;
     this._include_bias = config.include_bias;
-    this._combinations = config.interaction_only ? combinations : combinations_with_replacement;
+    this._combinations = config.interaction_only ? combinations
+                                                 : combinations_with_repitition;
     this._nFeaturesIn = config.nFeaturesIn;
   }
 
