@@ -81,7 +81,12 @@ export class PolynomialFeatures {
     return this._nFeaturesIn;
   }
 
-  /** Saves configuration to a simple option-bag */
+  /** Saves configuration to a simple option-bag.
+   *
+   * The configuration specifies the internal state of PolynomialFeatures
+   * completely. Hence the config of the transformer can be used to save it to a
+   * file.
+  */
   get config(): PolynomialFeaturesConfig {
     return { degree: this.degree, homogeneous: this.homogenous,
       interactionOnly: this.interactionOnly, nFeaturesIn: this.nFeaturesIn };
