@@ -1,0 +1,5 @@
+{
+  "out": "docs",
+  "exclude": "**/*+(index|.test).ts",
+  "theme": "minimal"
+}

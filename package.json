@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest --verbose",
     "build": "tsc",
-    "clean": "rm -r ./dist"
+    "clean": "rm -r ./dist",
+    "doc": "typedoc"
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,7 @@
     "@types/jest": "^24.0.13",
     "jest": "^24.8.0",
     "ts-jest": "^24.0.2",
+    "typedoc": "^0.14.2",
     "typescript": "^3.5.1"
   },
   "dependencies": {

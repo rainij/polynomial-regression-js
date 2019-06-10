@@ -1,3 +1,5 @@
+/** Basic combinatorial utility. For internal use only. */
+
 /**
  * Yield all k-combinations with repition from a given sequence.
  *
@@ -17,7 +19,7 @@
  * @param iterable A finite sequence
  * @param k The length of the combinations: 1, 2, 3, ...
  */
-export function* combinations_with_repitition<T>(iterable: Iterable<T>, k: number) {
+export function* combinationsWithRepitition<T>(iterable: Iterable<T>, k: number) {
   const pool = Array.from(iterable);
   const maxi = pool.length-1;
 
