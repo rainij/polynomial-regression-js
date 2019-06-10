@@ -5,11 +5,28 @@ export type PolynomialFeaturesConfig = { degree: number, homogeneous: boolean,
   interactionOnly: boolean, nFeaturesIn: number };
 
 /**
- * Translates feature vectors to vectors of certain monomials thereof.
+ * Transforms feature vectors to vectors of certain monomials thereof.
  *
- * E.g. after setting certain parameters (degree, ...), translates this: [x, y],
- * where x and y are numbers, into [x^2, y*x, x, y^2, y, 1], that is, all
- * monomials in x and y up to degree = 2.
+ * E.g. after setting options (degree, homogeneous, interactionOnly), and
+ * *fit()*ing, *transform()*s lists of feature vectors like [a, b, c], where a,
+ * b and c are numbers, into the following possible outputs
+ *
+ * - [a^2, ba, ca, a, b^2, cb, b, c^2, c, 1] (degree = 2), that is, all
+ *   monomials in a, b, c up to degree two.
+ *
+ * - [a^2, ba, ca, b^2, cb, c^2] (degree = 2, homogeneous = true), that is, all
+ *   monomials in a, b, c of degree exactly equal to two.
+ *
+ * - [ab, ac, bc] (degree = 2, homogeneous = true, interactionOnly = true), that
+ *   is, all monomials in a, b, c of degree exactly equal to two and no feature
+ *   raised to a power larger than one.
+ *
+ * - [ab, ac, a, bc, b, c, 1] (degree = 2, homogeneous = false, interactionOnly
+ *   = true), that is, all monomials in a, b, c of degree at most two and no
+ *   feature raised to a power larger than one.
+ *
+ * Of course, the number of features is not restricted to three, but must be the
+ * same in each feature vector of the list to be *transformed()*.
  */
 export class PolynomialFeatures {
   private _degree: number;
@@ -91,7 +108,7 @@ export class PolynomialFeatures {
   /**
    * Returns the list of polynomial features corresponding to x.
    *
-   * @param x List of features vectors.
+   * @param x List of features vectors (with same number of features each).
    */
   transform(x: number[][]): number[][] {
     let y: number[][] = [];
@@ -106,6 +123,7 @@ export class PolynomialFeatures {
       for (let comb of this._combinations(ximod, this._degree)) {
         yi.push(comb.reduce((p,c) => p*=c, 1));
       }
+      if (this.interactionOnly && !this._homogeneous) yi.push(1);
       y.push(yi)
     }
     return y;
