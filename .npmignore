@@ -1,0 +1,15 @@
+node_modules
+
+package-lock.json
+
+# project files
+data
+docs
+src
+test
+.editorconfig
+.gitignore
+.travis.yml
+jest.config.js
+tsconfig.json
+typedoc.json
