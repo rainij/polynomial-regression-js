@@ -1,6 +1,6 @@
 {
   "name": "regression-multivariate-polynomial",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Library for polynomial regression, written in TypeScript.",
   "main": "dist/index.js",
   "scripts": {
