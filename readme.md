@@ -1,3 +1,57 @@
-## Regression Multivariate Polynomial - a TypeScript library
+<h1 align="center">
+  regression-multivariate-linear
+</h1>
+
+[![build status][travis-image]][travis-url]
+
+**regression-multivariate-linear** is a javascript library, written in typescript. It provides a class *PolynomialRegressor* for multivariate polynomial regression and a class *PolynomialFeatures* for transforming input features $[x_1, x_2, \dots]$ into polynomial features $[\ldots, x_1^{k_1} x_2^{k_2} \ldots, \ldots]$.
+
+# Installation
 
 TODO
+
+# Usage
+
+## PolynomialRegressor
+
+```ts
+import { PolynomialRegressor } from 'regression-multivariate-polynomial';
+
+// Y0 = X0^2 + 2*X0X1, Y1 = X1^2 + 5*X0 + 1
+// Quadratric functions with two inputs need (at least) seven supporting points:
+const x = [[0, 0], [1, 0], [2, 0], [0, 1], [0, 2], [1,1], [2,2]];
+const y = [[0, 1], [1, 6], [4, 11], [0, 2], [0, 5], [3, 7], [12, 15]];
+
+// Search for a polynomial model of degree = 2.
+const model = new PolynomialRegressor(2);
+model.fit(x,y) // Training
+console.log(model.predict([[3, 3]]));
+// [ [27, 25] ]
+```
+
+## PolynomialFeatures
+
+```ts
+import { PolynomialFeatures } from 'regression-multivariate-polynomial';
+
+const x = [[3, 2]] // Two features: [[a, b]]
+
+// Generate Polynomial features up to degree 3
+let polyFeatures = new PolynomialFeatures(3);
+
+console.log(polyFeatures.fitTransform(x));
+// [ [27, 18, 9, 12, 6, 3, 8, 4, 2, 1] ]
+// That is: [ [a^3, a^2b, ab^2, ab, a, b^3, b^2, b, 1] ]
+```
+
+# API Documentation
+
+TODO
+
+# License
+
+[MIT](./LICENSE)
+
+[travis-url]: https://travis-ci.com/Rainij/regression-multivariate-polynomial
+
+[travis-image]: https://img.shields.io/travis/com/Rainij/regression-multivariate-polynomial.svg
