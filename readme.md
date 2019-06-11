@@ -1,14 +1,14 @@
 <h1 align="center">
-  regression-multivariate-linear
+  regression-multivariate-polynomial
 </h1>
 
 [![build status][travis-image]][travis-url]
 
-**regression-multivariate-linear** is a javascript library, written in typescript. It provides a class *PolynomialRegressor* for multivariate polynomial regression and a class *PolynomialFeatures* for transforming input features $[x_1, x_2, \dots]$ into polynomial features $[\ldots, x_1^{k_1} x_2^{k_2} \ldots, \ldots]$.
+**regression-multivariate-polynomial** is a javascript library, written in typescript. It provides a class *PolynomialRegressor* for multivariate polynomial regression and a class *PolynomialFeatures* for transforming input features $[x_1, x_2, \dots]$ into polynomial features $[\ldots, x_1^{k_1} x_2^{k_2} \ldots, \ldots]$.
 
 # Installation
 
-TODO
+`npm install --save regression-multivariate-polynomial`
 
 # Usage
 
