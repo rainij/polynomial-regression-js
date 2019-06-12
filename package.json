@@ -1,7 +1,7 @@
 {
   "name": "regression-multivariate-polynomial",
   "version": "0.1.0",
-  "description": "Library for polynomial regression, written in TypeScript.",
+  "description": "JavaScript library for polynomial regression, written in TypeScript.",
   "main": "dist/index.js",
   "scripts": {
     "test": "jest --verbose",
@@ -16,9 +16,10 @@
   "keywords": [
     "regression",
     "ml",
-    "machine-learning",
+    "machine learning",
     "polynomial",
-    "typescript"
+    "typescript",
+    "javascript"
   ],
   "author": "Reinhard Stahn",
   "license": "SEE LICENSE IN LICENSE",

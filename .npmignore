@@ -3,6 +3,7 @@ node_modules
 package-lock.json
 
 # project files
+.vscode
 data
 docs
 src
