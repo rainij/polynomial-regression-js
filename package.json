@@ -25,7 +25,7 @@
   "bugs": {
     "url": "https://github.com/Rainij/regression-multivariate-polynomial/issues"
   },
-  "homepage": "https://github.com/Rainij/regression-multivariate-polynomial#readme",
+  "homepage": "https://Rainij.github.io/regression-multivariate-polynomial",
   "devDependencies": {
     "@types/jest": "^24.0.13",
     "jest": "^24.8.0",

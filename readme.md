@@ -4,7 +4,7 @@
 
 [![build status][travis-image]][travis-url]
 
-**regression-multivariate-polynomial** is a javascript library, written in typescript. It provides a class *PolynomialRegressor* for multivariate polynomial regression and a class *PolynomialFeatures* for transforming input features $[x_1, x_2, \dots]$ into polynomial features $[\ldots, x_1^{k_1} x_2^{k_2} \ldots, \ldots]$.
+**regression-multivariate-polynomial** is a javascript library, written in typescript. It provides a class [PolynomialRegressor][doc-polynomial-regressor-url] for multivariate polynomial regression and a class [PolynomialFeatures][doc-polynomial-features-url] for transforming input features $[x_1, x_2, \dots]$ into polynomial features $[\ldots, x_1^{k_1} x_2^{k_2} \ldots, \ldots]$.
 
 # Installation
 
@@ -36,7 +36,7 @@ import { PolynomialFeatures } from 'regression-multivariate-polynomial';
 
 const x = [[3, 2]] // Two features: [[a, b]]
 
-// Generate Polynomial features up to degree 3
+// Generate polynomial features up to degree 3
 let polyFeatures = new PolynomialFeatures(3);
 
 console.log(polyFeatures.fitTransform(x));
@@ -44,9 +44,10 @@ console.log(polyFeatures.fitTransform(x));
 // That is: [ [a^3, a^2b, ab^2, ab, a, b^3, b^2, b, 1] ]
 ```
 
-# API Documentation
+# API
 
-TODO
+API [documentation][doc-url] is build by typedoc.
+
 
 # License
 
@@ -55,3 +56,9 @@ TODO
 [travis-url]: https://travis-ci.com/Rainij/regression-multivariate-polynomial
 
 [travis-image]: https://img.shields.io/travis/com/Rainij/regression-multivariate-polynomial.svg
+
+[doc-url]: https://rainij.github.io/regression-multivariate-polynomial/
+
+[doc-polynomial-regressor-url]: https://rainij.github.io/regression-multivariate-polynomial/classes/_polynomial_regression_.polynomialregressor.html
+
+[doc-polynomial-features-url]: https://rainij.github.io/regression-multivariate-polynomial/classes/_polynomial_features_.polynomialfeatures.html
