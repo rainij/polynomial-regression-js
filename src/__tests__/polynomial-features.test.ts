@@ -26,12 +26,112 @@ describe('Tests for fit and transform methods', () => {
     fitTransformPolynomialFeatures(degree, homogeneous, interactionOnly, input, desiredOutput);
   });
 
+  it('Two features, degree 3', () => {
+    const degree = 3;
+    const homogeneous = false;
+    const interactionOnly = false;
+    const input = [[3,2]];
+    const desiredOutput = [[27, 18, 9, 12, 6, 3, 8, 4, 2, 1]];
+
+    fitTransformPolynomialFeatures(degree, homogeneous, interactionOnly, input, desiredOutput);
+  });
+
+  it('Three features, degree 2', () => {
+    const degree = 2;
+    const homogeneous = false;
+    const interactionOnly = false;
+    const input = [[5, 3, 2]];
+    const desiredOutput = [[25, 15, 10, 5, 9, 6, 3, 4, 2, 1]];
+
+    fitTransformPolynomialFeatures(degree, homogeneous, interactionOnly, input, desiredOutput);
+  });
+
+  it('Four features, degree 1', () => {
+    const degree = 1;
+    const homogeneous = false;
+    const interactionOnly = false;
+    const input = [[7, 5, 3, 2]];
+    const desiredOutput = [[7, 5, 3, 2, 1]];
+
+    fitTransformPolynomialFeatures(degree, homogeneous, interactionOnly, input, desiredOutput);
+  });
+
+  it('One feature, degree 5', () => {
+    const degree = 5;
+    const homogeneous = false;
+    const interactionOnly = false;
+    const input = [[2]];
+    const desiredOutput = [[32, 16, 8, 4, 2, 1]];
+
+    fitTransformPolynomialFeatures(degree, homogeneous, interactionOnly, input, desiredOutput);
+  });
+
   it('Three features, degree 3, homogeneous', () => {
     const degree = 3;
     const homogeneous = true;
     const interactionOnly = false;
     const input = [[5,3,2]];
     const desiredOutput = [[125, 75, 50, 45, 30, 20, 27, 18, 12, 8]];
+
+    fitTransformPolynomialFeatures(degree, homogeneous, interactionOnly, input, desiredOutput);
+  });
+
+  it('Two features, degree 3, homogeneous', () => {
+    const degree = 3;
+    const homogeneous = true;
+    const interactionOnly = false;
+    const input = [[3,2]];
+    const desiredOutput = [[27, 18, 12, 8]];
+
+    fitTransformPolynomialFeatures(degree, homogeneous, interactionOnly, input, desiredOutput);
+  });
+
+  it('Three features, degree 2, homogeneous', () => {
+    const degree = 2;
+    const homogeneous = true;
+    const interactionOnly = false;
+    const input = [[5, 3, 2]];
+    const desiredOutput = [[25, 15, 10, 9, 6, 4]];
+
+    fitTransformPolynomialFeatures(degree, homogeneous, interactionOnly, input, desiredOutput);
+  });
+
+  it('Three features, degree 1, homogeneous', () => {
+    const degree = 1;
+    const homogeneous = true;
+    const interactionOnly = false;
+    const input = [[5, 3, 2]];
+    const desiredOutput = [[5, 3, 2]];
+
+    fitTransformPolynomialFeatures(degree, homogeneous, interactionOnly, input, desiredOutput);
+  });
+
+  it('One feature, degree 6, homogeneous', () => {
+    const degree = 6;
+    const homogeneous = true;
+    const interactionOnly = false;
+    const input = [[2]];
+    const desiredOutput = [[64]];
+
+    fitTransformPolynomialFeatures(degree, homogeneous, interactionOnly, input, desiredOutput);
+  });
+
+  it('Four features, degree 2, interaction only', () => {
+    const degree = 2;
+    const homogeneous = false;
+    const interactionOnly = true;
+    const input = [[7,5,3,2]];
+    const desiredOutput = [[1, 7, 5, 3, 2, 35, 21, 14, 15, 10, 6]];
+
+    fitTransformPolynomialFeatures(degree, homogeneous, interactionOnly, input, desiredOutput);
+  });
+
+  it('Three features, degree 3, interaction only', () => {
+    const degree = 3;
+    const homogeneous = false;
+    const interactionOnly = true;
+    const input = [[5,3,2]];
+    const desiredOutput = [[1, 5, 3, 2, 15, 10, 6, 30]];
 
     fitTransformPolynomialFeatures(degree, homogeneous, interactionOnly, input, desiredOutput);
   });
@@ -46,12 +146,12 @@ describe('Tests for fit and transform methods', () => {
     fitTransformPolynomialFeatures(degree, homogeneous, interactionOnly, input, desiredOutput);
   });
 
-  it('Four features, degree 2, interaction only', () => {
-    const degree = 2;
-    const homogeneous = false;
+  it('Six features, degree 6, homogeneous, interaction only', () => {
+    const degree = 6;
+    const homogeneous = true;
     const interactionOnly = true;
-    const input = [[7,5,3,2]];
-    const desiredOutput = [[35, 21, 14, 7, 15, 10, 5, 6, 3, 2, 1]];
+    const input = [[13,11,7,5,3,2]];
+    const desiredOutput = [[30030]];
 
     fitTransformPolynomialFeatures(degree, homogeneous, interactionOnly, input, desiredOutput);
   });
@@ -82,6 +182,7 @@ describe('Error handling', () => {
     cases.push({pF: new PolynomialFeatures(-1), x: dummy});
     cases.push({pF: new PolynomialFeatures(3.14), x: dummy});
     cases.push({pF: new PolynomialFeatures(3, true, true), x: [[1, 2]]});
+    cases.push({pF: new PolynomialFeatures(3, false, true), x: [[1, 2]]});
 
     for (const cs of cases) {
       expect(() => cs.pF.fit(cs.x)).toThrow(RegressionError);
@@ -94,6 +195,7 @@ describe('Error handling', () => {
     cases.push({degree: -3, homogeneous: false, interactionOnly: false, nFeaturesIn: 7});
     cases.push({degree: 0.5, homogeneous: false, interactionOnly: false, nFeaturesIn: 7});
     cases.push({degree: 5, homogeneous: true, interactionOnly: true, nFeaturesIn: 4});
+    cases.push({degree: 5, homogeneous: false, interactionOnly: true, nFeaturesIn: 4});
     cases.push({degree: 1, homogeneous: false, interactionOnly: false, nFeaturesIn: 0.5});
     cases.push({degree: -3, homogeneous: false, interactionOnly: false, nFeaturesIn: -3});
 

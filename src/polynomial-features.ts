@@ -128,11 +128,13 @@ export class PolynomialFeatures {
         throw new RegressionError(message);
       }
       let yi: number[] = [];
-      const ximod = this._homogeneous ? xi.concat() : xi.concat([1]); // concat() makes a copy
-      for (const comb of this._combinations(ximod, this._degree)) {
-        yi.push(comb.reduce((p,c) => p*=c, 1));
+      const ximod = this.homogenous || this.interactionOnly ? xi.concat() : xi.concat([1]);
+      const degrees = this.interactionOnly && !this.homogenous ? [...Array(this.degree+1).keys()] : [this.degree]
+      for(const degree of degrees) {
+        for (const comb of this._combinations(ximod, degree)) {
+          yi.push(comb.reduce((p,c) => p*=c, 1));
+        }
       }
-      if (this.interactionOnly && !this._homogeneous && this.degree !== 0) yi.push(1);
       y.push(yi)
     }
     return y;
@@ -165,8 +167,8 @@ export class PolynomialFeatures {
       throw new RegressionError("Degree must be integer");
     }
 
-    if (this.homogenous && this.interactionOnly && this.degree > this.nFeaturesIn) {
-      throw new RegressionError("Degree cannot exceed number of input features in homogenous-and-interactionOnly-mode");
+    if (this.interactionOnly && this.degree > this.nFeaturesIn) {
+      throw new RegressionError("Degree cannot exceed number of input features in interactionOnly-mode");
     }
 
     if (this.nFeaturesIn % 1 !== 0) {
