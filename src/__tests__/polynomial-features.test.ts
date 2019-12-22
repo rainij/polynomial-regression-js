@@ -1,4 +1,6 @@
 import { PolynomialFeatures } from '../index'
+import { RegressionError } from '../util/util';
+import { PolynomialFeaturesConfig } from '../polynomial-features';
 
 /// Auxiliary function
 
@@ -54,6 +56,36 @@ describe('Tests for fit and transform methods', () => {
     fitTransformPolynomialFeatures(degree, homogeneous, interactionOnly, input, desiredOutput);
   });
 });
+
+describe('Error handling', () => {
+  it('Detect invalid config (from constructor)', () => {
+    const cases: {pF: PolynomialFeatures, x: number[][]}[] = [];
+    const dummy = [[0, 8, 15]];
+    
+    cases.push({pF: new PolynomialFeatures(-1), x: dummy});
+    cases.push({pF: new PolynomialFeatures(3.14), x: dummy});
+    cases.push({pF: new PolynomialFeatures(3, true, true), x: [[1, 2]]});
+
+    for (const cs of cases) {
+      expect(() => cs.pF.fit(cs.x)).toThrow(RegressionError);
+    }
+  })
+
+  it('Detect invalid config (from loaded config)', () => {
+    const cases: PolynomialFeaturesConfig[] = [];
+
+    cases.push({degree: -3, homogeneous: false, interactionOnly: false, nFeaturesIn: 7});
+    cases.push({degree: 0.5, homogeneous: false, interactionOnly: false, nFeaturesIn: 7});
+    cases.push({degree: 5, homogeneous: true, interactionOnly: true, nFeaturesIn: 4});
+    cases.push({degree: 1, homogeneous: false, interactionOnly: false, nFeaturesIn: 0.5});
+    cases.push({degree: -3, homogeneous: false, interactionOnly: false, nFeaturesIn: -3});
+
+    for (const config of cases) {
+      const polyFeatures = new PolynomialFeatures();
+      expect(() => polyFeatures.fromConfig(config)).toThrow(RegressionError);
+    }
+  })
+})
 
 describe('Misc', () => {
   it('Save configuration and load again', () => {

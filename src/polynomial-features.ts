@@ -1,4 +1,5 @@
 import { combinations, combinationsWithRepitition } from './util/itertools'
+import { RegressionError } from './util/util'
 
 /** For internal use only */
 export type PolynomialFeaturesConfig = { degree: number, homogeneous: boolean,
@@ -99,6 +100,8 @@ export class PolynomialFeatures {
     this._combinations = config.interactionOnly ? combinations
                                                 : combinationsWithRepitition;
     this._nFeaturesIn = config.nFeaturesIn;
+
+    this.assertValidConfig();
   }
 
   /** Sets the number of input features.
@@ -108,6 +111,7 @@ export class PolynomialFeatures {
   */
   fit(x: number[][]) { // TODO probably one could improve this
     this._nFeaturesIn = x[0].length;
+    this.assertValidConfig(); // After fitting we should have a valid config
   }
 
   /**
@@ -117,7 +121,7 @@ export class PolynomialFeatures {
    */
   transform(x: number[][]): number[][] {
     let y: number[][] = [];
-    for (let xi of x) {
+    for (const xi of x) {
       if (xi.length !== this.nFeaturesIn) {
         let message = `Invalid input: Input dimension is ${xi.length} expected ${this.nFeaturesIn}.`;
         if (!this.nFeaturesIn) message += ' Maybe you forgot to fit(...) the data.';
@@ -125,7 +129,7 @@ export class PolynomialFeatures {
       }
       let yi: number[] = [];
       const ximod = this._homogeneous ? xi.concat() : xi.concat([1]); // concat() makes a copy
-      for (let comb of this._combinations(ximod, this._degree)) {
+      for (const comb of this._combinations(ximod, this._degree)) {
         yi.push(comb.reduce((p,c) => p*=c, 1));
       }
       if (this.interactionOnly && !this._homogeneous) yi.push(1);
@@ -142,5 +146,35 @@ export class PolynomialFeatures {
   fitTransform(x: number[][]): number[][] {
     this.fit(x);
     return this.transform(x);
+  }
+
+  /**
+   * Throw error in case of invalid configuration.
+   */
+  assertValidConfig() {
+    if (this._degree === undefined || this._homogeneous === undefined || this._nFeaturesIn === undefined
+        || this._combinations === undefined) {
+      throw new RegressionError("Incomplete configuration not allowed")
+    }
+
+    if (this.degree < 0) {
+      throw new RegressionError("Degree not allowed to be negative");
+    }
+
+    if (this.degree % 1 !== 0) {
+      throw new RegressionError("Degree must be integer");
+    }
+
+    if (this.homogenous && this.interactionOnly && this.degree > this.nFeaturesIn) {
+      throw new RegressionError("Degree cannot exceed number of input features in homogenous-and-interactionOnly-mode");
+    }
+
+    if (this.nFeaturesIn % 1 !== 0) {
+      throw new RegressionError("Number of input features must be integer");
+    }
+
+    if (this.nFeaturesIn < 0) {
+      throw new RegressionError("Number of input features cannot be negative");
+    }
   }
 }
