@@ -33,8 +33,7 @@ export class PolynomialFeatures {
   private _degree: number;
   private _nFeaturesIn: number;
   private _homogeneous: boolean;
-  private _combinations:
-            <T>(iterable: Iterable<T>, degree: number) => IterableIterator<T[]>;
+  private _interactionOnly: boolean;
 
   /**
    * Basic configuration. You can skip configuration by providing no arguments.
@@ -53,8 +52,7 @@ export class PolynomialFeatures {
     if (degree !== undefined) {
       this._degree = degree;
       this._homogeneous = homogeneous;
-      this._combinations = interactionOnly ? combinations
-                                           : combinationsWithRepitition;
+      this._interactionOnly = interactionOnly;
     }
   }
 
@@ -70,7 +68,7 @@ export class PolynomialFeatures {
 
   /** Configuration option 'interactionOnly' */
   get interactionOnly() {
-    return (this._combinations === combinations);
+    return this._interactionOnly;
   }
 
   /**
@@ -97,8 +95,7 @@ export class PolynomialFeatures {
   fromConfig(config: PolynomialFeaturesConfig) {
     this._degree = config.degree;
     this._homogeneous = config.homogeneous;
-    this._combinations = config.interactionOnly ? combinations
-                                                : combinationsWithRepitition;
+    this._interactionOnly = config.interactionOnly;;
     this._nFeaturesIn = config.nFeaturesIn;
 
     this.assertValidConfig();
@@ -122,21 +119,27 @@ export class PolynomialFeatures {
   transform(x: number[][]): number[][] {
     let y: number[][] = [];
     for (const xi of x) {
+
       if (xi.length !== this.nFeaturesIn) {
         let message = `Invalid input: Input dimension is ${xi.length} expected ${this.nFeaturesIn}.`;
         if (!this.nFeaturesIn) message += ' Maybe you forgot to fit(...) the data.';
         throw new RegressionError(message);
       }
+
       let yi: number[] = [];
       const ximod = this.homogenous || this.interactionOnly ? xi.concat() : xi.concat([1]);
       const degrees = this.interactionOnly && !this.homogenous ? [...Array(this.degree+1).keys()] : [this.degree]
+      const combis = this._interactionOnly ? combinations : combinationsWithRepitition;
+      
       for(const degree of degrees) {
-        for (const comb of this._combinations(ximod, degree)) {
+        for (const comb of combis(ximod, degree)) {
           yi.push(comb.reduce((p,c) => p*=c, 1));
         }
       }
+      
       y.push(yi)
     }
+
     return y;
   }
 
@@ -154,8 +157,8 @@ export class PolynomialFeatures {
    * Throw error in case of invalid configuration.
    */
   assertValidConfig() {
-    if (this._degree === undefined || this._homogeneous === undefined || this._nFeaturesIn === undefined
-        || this._combinations === undefined) {
+    if (this._degree === undefined || this._homogeneous === undefined || this._interactionOnly === undefined
+        || this._nFeaturesIn === undefined) {
       throw new RegressionError("Incomplete configuration not allowed")
     }
 
