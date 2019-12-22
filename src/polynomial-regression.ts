@@ -34,7 +34,7 @@ export class PolynomialRegressor {
    * @param interactionOnly Whether to disallow higher powers of single features
    */
   constructor(degree?: number, homogeneous: boolean = false, interactionOnly: boolean = false) {
-    if (degree) {
+    if (degree !== undefined) {
       this._polyFeatures = new PolynomialFeatures(degree, homogeneous, interactionOnly)
     }
   }

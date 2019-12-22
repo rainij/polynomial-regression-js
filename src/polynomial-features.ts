@@ -49,7 +49,7 @@ export class PolynomialFeatures {
   constructor(degree?: number, homogeneous: boolean = false,
     interactionOnly: boolean = false ) {
 
-    if (degree) {
+    if (degree !== undefined) {
       this._degree = degree;
       this._homogeneous = homogeneous;
       this._combinations = interactionOnly ? combinations
@@ -124,7 +124,7 @@ export class PolynomialFeatures {
         throw Error(message);
       }
       let yi: number[] = [];
-      const ximod = this._homogeneous ? xi.concat() : xi.concat([1]);
+      const ximod = this._homogeneous ? xi.concat() : xi.concat([1]); // concat() makes a copy
       for (let comb of this._combinations(ximod, this._degree)) {
         yi.push(comb.reduce((p,c) => p*=c, 1));
       }
