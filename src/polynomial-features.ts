@@ -125,14 +125,14 @@ export class PolynomialFeatures {
       if (xi.length !== this.nFeaturesIn) {
         let message = `Invalid input: Input dimension is ${xi.length} expected ${this.nFeaturesIn}.`;
         if (!this.nFeaturesIn) message += ' Maybe you forgot to fit(...) the data.';
-        throw Error(message);
+        throw new RegressionError(message);
       }
       let yi: number[] = [];
       const ximod = this._homogeneous ? xi.concat() : xi.concat([1]); // concat() makes a copy
       for (const comb of this._combinations(ximod, this._degree)) {
         yi.push(comb.reduce((p,c) => p*=c, 1));
       }
-      if (this.interactionOnly && !this._homogeneous) yi.push(1);
+      if (this.interactionOnly && !this._homogeneous && this.degree !== 0) yi.push(1);
       y.push(yi)
     }
     return y;

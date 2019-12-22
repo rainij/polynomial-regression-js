@@ -55,6 +55,23 @@ describe('Tests for fit and transform methods', () => {
 
     fitTransformPolynomialFeatures(degree, homogeneous, interactionOnly, input, desiredOutput);
   });
+
+  it('Degree 0', () => {
+    const degree = 0;
+    const inputs = [[[]], [[2]], [[3, 2]], [[5, 3, 2]]];
+    const desiredOutput = [[1]]
+    
+    const flags = [[true, true], [true, false], [false, true], [false, false]];
+
+    for (const flag of flags) {
+      const homogeneous = flag[0];
+      const interactionOnly = flag[1];
+
+      for (const input of inputs) {
+        fitTransformPolynomialFeatures(degree, homogeneous, interactionOnly, input, desiredOutput);
+      }
+    }
+  })
 });
 
 describe('Error handling', () => {

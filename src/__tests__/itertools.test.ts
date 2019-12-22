@@ -55,12 +55,14 @@ describe('Tests for itertools', () => {
       combiTester.execute(pool, k, desiredResult);
     });
 
-    it('Choose 0 of 3', () => {
+    it('Choose 0', () => {
       const k = 0
-      const pool = [1, 2, 3];
+      const pools = [[], [1], [1, 2], [1, 2, 3]];
       const desiredResult = [[]];
 
-      combiTester.execute(pool, k, desiredResult);
+      for (const pool of pools) {
+        combiTester.execute(pool, k, desiredResult);
+      }
     });
 
     it('Choose less than 0 or more than n', () => {
@@ -110,6 +112,16 @@ describe('Tests for itertools', () => {
       const desiredResult = [[1, 1, 1], [2, 1, 1], [2, 2, 1], [2, 2, 2]];
 
       combiTester.execute(pool, k, desiredResult);
+    });
+
+    it('Choose 0', () => {
+      const k = 0
+      const pools = [[], [1], [1, 2], [1, 2, 3]];
+      const desiredResult = [[]];
+
+      for (const pool of pools) {
+        combiTester.execute(pool, k, desiredResult);
+      }
     });
 
     it('Choose less than 0', () => {
