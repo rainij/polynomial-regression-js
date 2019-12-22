@@ -6,7 +6,7 @@
 [![npm version][npm-image]][npm-url]
 [![npm download][download-image]][npm-url]
 
-**regression-multivariate-polynomial** is a javascript library, written in typescript. It provides a class [PolynomialRegressor][doc-polynomial-regressor-url] for multivariate polynomial regression and a class [PolynomialFeatures][doc-polynomial-features-url] for transforming input features $[x_1, x_2, \dots]$ into polynomial features $[\ldots, x_1^{k_1} x_2^{k_2} \ldots, \ldots]$.
+**regression-multivariate-polynomial** is a javascript library, written in typescript. It provides a class [PolynomialRegressor][doc-polynomial-regressor-url] for multivariate polynomial regression and a class [PolynomialFeatures][doc-polynomial-features-url] for transforming input features [x1, x2, ...] into polynomial features [..., x1^k1 * x2^k2..., ...].
 
 # Installation
 
