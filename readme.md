@@ -64,7 +64,7 @@ API [documentation][doc-url] built by TypeDoc.
 
 [npm-image]: https://img.shields.io/npm/v/regression-multivariate-polynomial.svg
 
-[download-image]: https://img.shields.io/npm/dw/regression-multivariate-polynomial.svg
+[download-image]: https://img.shields.io/npm/dm/regression-multivariate-polynomial.svg
 
 [doc-url]: https://rainij.github.io/regression-multivariate-polynomial/index.html
 
