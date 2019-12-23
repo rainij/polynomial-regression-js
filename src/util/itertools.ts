@@ -20,6 +20,8 @@
  * @param k The length of the combinations: 1, 2, 3, ...
  */
 export function* combinationsWithRepitition<T>(iterable: Iterable<T>, k: number) {
+  if (k < 0) return [];
+
   const pool = Array.from(iterable);
   const maxi = pool.length-1;
 
@@ -70,7 +72,7 @@ export function* combinationsWithRepitition<T>(iterable: Iterable<T>, k: number)
 export function* combinations<T>(iterable: Iterable<T>, k: number) {
   const pool = Array.from(iterable);
 
-  if (k > pool.length) return null;
+  if (k > pool.length || k < 0) return [];
 
   let indices: number[] = Array.from({length: k}, (_, k) => k);
   let next: T[] = Array.from({length: k}, (_, k) => pool[k]);

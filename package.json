@@ -22,7 +22,7 @@
     "javascript"
   ],
   "author": "Reinhard Stahn",
-  "license": "SEE LICENSE IN LICENSE",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Rainij/regression-multivariate-polynomial/issues"
   },

@@ -7,9 +7,9 @@ import * as data2 from '../../data/example2'
 
 function fitAndTestPolynomialRegressor(xtrain: number[][], ytrain: number[][],
 xtest: number[][], ytest: number[][], degree: number,
-homogeneous: boolean = false, numDigits: number = 6) {
+homogeneous: boolean = false, interactiveOnly: boolean = false, numDigits: number = 6) {
 
-  let polyReg = new PolynomialRegressor(degree, homogeneous);
+  let polyReg = new PolynomialRegressor(degree, homogeneous, interactiveOnly);
   polyReg.fit(xtrain, ytrain);
 
   const ypredict = polyReg.predict(xtest);
@@ -33,7 +33,7 @@ numDigits: number = 6) {
 
 describe('Exactly polynomial laws and small data sets', () => {
   it('Univariate, degree 2', () => {
-    let degree = 2;
+    const degree = 2;
 
     // y = x**2 + 3*x + 5
     const xtrain = [[0], [1], [2]]; // exactly enough data
@@ -46,7 +46,7 @@ describe('Exactly polynomial laws and small data sets', () => {
   });
 
   it('Univariate, degree 5', () => {
-    let degree = 5;
+    const degree = 5;
 
     // y = -3*x**5 + 18*x**4 + 122*x**3 - 3.9*x**2 - x + 77
     const xtrain = [[3], [-5], [0.9], [8], [-3.7], [0.2], [-9.7], [1.5], [0.9]]; // more than enough data
@@ -60,9 +60,9 @@ describe('Exactly polynomial laws and small data sets', () => {
   });
 
   it('(2,1)-variate, degree 3', () => {
-    let degree = 3;
+    const degree = 3;
 
-    // y = 1.1*x**3 + 5*x*y**2 + x*y - y**2 + 5.9
+    // y = 1.1*x1**3 + 5*x1*x2**2 + x1*x2 - x2**2 + 5.9
     const xtrain = [[0,1], [2.1,3], [-3.9,9.7], [-2,-2], [7,0.8], [4.1,4], [8.3, -2.9],
                    [-1.3,9.9], [11.3,3.33], [4.4,-5.6], [8.8, 0.6], [9.1,-9.2]]; // 10 would be enough
     const ytrain = [[4.9], [107.8871], [-2026.0258999999996], [-42.9], [410.56000000000006],
@@ -74,11 +74,24 @@ describe('Exactly polynomial laws and small data sets', () => {
 
     fitAndTestPolynomialRegressor(xtrain, ytrain, xtest, ytest, degree);
   });
+
+  it('(2,2)-variate, degree 1', () => {
+    const degree = 1;
+
+    // y = [3*x1 + 5.5*x2, -1.2*x1 + x2 - 1.23] 
+    const xtrain = [[1, 2], [3.5, 7.9], [-3, 1.3], [7, -7]]; // 3 would be enough
+    const ytrain = [[14.0, -0.43], [53.95, 2.47], [-1.85, 3.67], [-17.5, -16.63]];
+
+    const xtest = [[0, 0], [1, 0], [0, 1], [1, 1]];
+    const ytest = [[0.0, -1.23], [3.0, -2.43], [5.5, -0.23], [8.5, -1.43]];
+
+    fitAndTestPolynomialRegressor(xtrain, ytrain, xtest, ytest, degree);
+  });
 });
 
-describe('Exactly polynomial laws, no bias and small data sets', () => {
+describe('Homogeneous and small data sets', () => {
   it('Univariate, degree 2', () => {
-    let degree = 2;
+    const degree = 2;
 
     // y = -3*x**2
     const xtrain = [[0], [1], [2]]; // more than enough data
@@ -91,7 +104,7 @@ describe('Exactly polynomial laws, no bias and small data sets', () => {
   });
 
   it('(3,2)-variate, degree 1', () => {
-    let degree = 1;
+    const degree = 1;
 
     // y1 = x1 + x2 + 2*x3, y2 = -x1 + 6*x2
     const xtrain = [[0,1,2], [-4,1,0], [0,1,-2]]; // exactly enough data
@@ -104,6 +117,36 @@ describe('Exactly polynomial laws, no bias and small data sets', () => {
   });
 });
 
+describe('Interaction only, small data sets', () => {
+  it('Univariate, degree 1', () => {
+    const degree = 1;
+
+    // y = x**2 
+    const xtrain = [[0], [1], [2]]; // more than enough data
+    const ytrain = [[0], [1], [4]];
+
+    const xtest = [[0], [1]];
+    const ytest = [[-1/3], [5/3]]; // 2*x - 1/3
+
+    fitAndTestPolynomialRegressor(xtrain, ytrain, xtest, ytest, degree, false, true);
+  });
+});
+
+describe('Homogeneous and interaction only, small data sets', () => {
+  it('(3,1)-variate, degree 3', () => {
+    const degree = 3;
+
+    // y = x1*x2*x3 + 1
+    const xtrain = [[0, 0, 0], [1, 1, 1]];
+    const ytrain = [[1], [2]];
+
+    const xtest = [[2, 2, 2]];
+    const ytest = [[16]]; // 2*x1*x2*x3
+
+    fitAndTestPolynomialRegressor(xtrain, ytrain, xtest, ytest, degree, true, true);
+  });
+});
+
 describe('Artificial polynomial data with noise (few houndred samples)', () => {
   it(`(3,1)-variate, degree ${data1.degree}, number samples ${data1.trainInput.length}`, () => {
     fitAndTestPolynomialRegressor(data1.trainInput, data1.trainOutput,
@@ -113,6 +156,35 @@ describe('Artificial polynomial data with noise (few houndred samples)', () => {
   it(`(4,1)-variate, degree ${data2.degree}, number samples ${data2.trainInput.length}`, () => {
     fitAndTestPolynomialRegressor(data2.trainInput, data2.trainOutput,
       data2.testInput, data2.testPredicted, data2.degree);
+  });
+});
+
+describe('Degree 0', () => {
+  it('(n,1)-variate for n = 0, 1, 2, 3', () => {
+    for (const n of [0, 1, 2, 3]) {
+      const xtrainMaker = (k: number) => new Array(k).fill(new Array(n).fill(2.71)); // exact value irrelevant
+      const xtest =[new Array(n).fill(3.14)]; // exact value irrelevant
+
+      const cases: {ytrain: number[][], ytest: number[][], xtrain: number[][]}[]  = [];
+
+      cases.push({ytrain: [[0.3], [0.6]], ytest: [[0.45]], xtrain: xtrainMaker(2)});
+      cases.push({ytrain: [[1.1], [1.6]], ytest: [[1.35]], xtrain: xtrainMaker(2)});
+      cases.push({ytrain: [[1], [2], [3]], ytest: [[2]], xtrain: xtrainMaker(3)});
+      cases.push({ytrain: [[1], [2], [4]], ytest: [[2+1/3]], xtrain: xtrainMaker(3)});
+      cases.push({ytrain: [[1], [3], [-17], [3.4]], ytest: [[-2.4]], xtrain: xtrainMaker(4)});
+      cases.push({ytrain: [[4], [3], [4], [3]], ytest: [[3.5]], xtrain: xtrainMaker(4)});
+      cases.push({ytrain: [[1], [2], [3], [4]], ytest: [[2.5]], xtrain: xtrainMaker(4)});
+
+      for (const cs of cases) {
+        const flags = [[true, true], [true, false], [false, true], [false, false]];
+
+        for (const flag of flags) {
+          const homogeneous = flag[0];
+          const interactiveOnly = flag[1];
+          fitAndTestPolynomialRegressor(cs.xtrain, cs.ytrain, xtest, cs.ytest, 0, homogeneous, interactiveOnly);
+        }
+      }
+    }
   });
 });
 
