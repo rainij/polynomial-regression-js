@@ -7,7 +7,7 @@ import * as data2 from '../../data/example2'
 
 function fitAndTestPolynomialRegressor(xtrain: number[][], ytrain: number[][],
 xtest: number[][], ytest: number[][], degree: number,
-homogeneous: boolean = false, numDigits: number = 6) {
+homogeneous: boolean = false, interactiveOnly: boolean = false, numDigits: number = 6) {
 
   let polyReg = new PolynomialRegressor(degree, homogeneous);
   polyReg.fit(xtrain, ytrain);
@@ -113,6 +113,35 @@ describe('Artificial polynomial data with noise (few houndred samples)', () => {
   it(`(4,1)-variate, degree ${data2.degree}, number samples ${data2.trainInput.length}`, () => {
     fitAndTestPolynomialRegressor(data2.trainInput, data2.trainOutput,
       data2.testInput, data2.testPredicted, data2.degree);
+  });
+});
+
+describe('Degree 0', () => {
+  it('(n,1)-variate for n = 0, 1, 2, 3', () => {
+    for (const n of [0, 1, 2, 3]) {
+      const xtrainMaker = (k: number) => new Array(k).fill(new Array(n).fill(2.71)); // exact value irrelevant
+      const xtest =[new Array(n).fill(3.14)]; // exact value irrelevant
+
+      const cases: {ytrain: number[][], ytest: number[][], xtrain: number[][]}[]  = [];
+
+      cases.push({ytrain: [[0.3], [0.6]], ytest: [[0.45]], xtrain: xtrainMaker(2)});
+      cases.push({ytrain: [[1.1], [1.6]], ytest: [[1.35]], xtrain: xtrainMaker(2)});
+      cases.push({ytrain: [[1], [2], [3]], ytest: [[2]], xtrain: xtrainMaker(3)});
+      cases.push({ytrain: [[1], [2], [4]], ytest: [[2+1/3]], xtrain: xtrainMaker(3)});
+      cases.push({ytrain: [[1], [3], [-17], [3.4]], ytest: [[-2.4]], xtrain: xtrainMaker(4)});
+      cases.push({ytrain: [[4], [3], [4], [3]], ytest: [[3.5]], xtrain: xtrainMaker(4)});
+      cases.push({ytrain: [[1], [2], [3], [4]], ytest: [[2.5]], xtrain: xtrainMaker(4)});
+
+      for (const cs of cases) {
+        const flags = [[true, true], [true, false], [false, true], [false, false]];
+
+        for (const flag of flags) {
+          const homogeneous = flag[0];
+          const interactiveOnly = flag[1];
+          fitAndTestPolynomialRegressor(cs.xtrain, cs.ytrain, xtest, cs.ytest, 0, homogeneous, interactiveOnly);
+        }
+      }
+    }
   });
 });
 
