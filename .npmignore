@@ -10,7 +10,6 @@ src
 test
 .editorconfig
 .gitignore
-.travis.yml
 jest.config.js
 tsconfig.json
 typedoc.json

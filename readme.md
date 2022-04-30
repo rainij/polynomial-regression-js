@@ -2,7 +2,6 @@
   regression-multivariate-polynomial
 </h1>
 
-[![build status][travis-image]][travis-url]
 [![npm version][npm-image]][npm-url]
 [![npm download][download-image]][npm-url]
 
@@ -54,11 +53,6 @@ API [documentation][doc-url] built by TypeDoc.
 # License
 
 [MIT](./LICENSE)
-
-
-[travis-url]: https://travis-ci.com/Rainij/regression-multivariate-polynomial
-
-[travis-image]: https://img.shields.io/travis/com/Rainij/regression-multivariate-polynomial.svg
 
 [npm-url]: https://www.npmjs.com/package/regression-multivariate-polynomial
 
