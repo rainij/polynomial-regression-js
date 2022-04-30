@@ -7,7 +7,3 @@ docs
 ### matching
 *.log
 *.tgz
-
-### inverse
-!dist/.gitkeep
-!dist/readme.md
