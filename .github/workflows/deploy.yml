@@ -2,13 +2,9 @@ name: Deploy
 
 on:
   push:
-    branches-ignore:
-      - '*'
-      - '!master'
-      # TODO
-#      - '!switch-travis-to-github-actions'
     tags:
-      - '*'
+      # We use tags of the form x.y.z to mark releases.
+      - '[0-9]+\.[0-9]+\.[0-9]+'
 
 jobs:
   deploy:
