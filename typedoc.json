@@ -1,5 +1,5 @@
 {
+  "entryPoints": ["src/index.ts"],
   "out": "docs",
-  "exclude": "**/*+(index|.test).ts",
   "theme": "default"
 }

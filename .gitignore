@@ -1,9 +1,9 @@
 ### folders
 .vscode
 node_modules
-dist/*
+dist
 docs
 
-### matching
+### other
 *.log
 *.tgz

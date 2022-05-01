@@ -7,7 +7,7 @@
     "test": "jest --verbose",
     "build": "tsc",
     "clean": "rm -rf ./dist ./docs",
-    "doc": "typedoc src/index.ts"
+    "doc": "typedoc"
   },
   "repository": {
     "type": "git",
