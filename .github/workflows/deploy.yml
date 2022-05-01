@@ -2,6 +2,8 @@ name: Deploy
 
 on:
   push:
+    branches:
+      - master
     tags:
       # TODO
       # We use tags of the form x.y.z to mark releases.
