@@ -16,6 +16,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      # TODO
+      - id: ci
+        uses: ./.github/actions/ci
+        with:
+          who-to-greet: 'Reinhard Stahn'
+      - run: echo random-number ${{ steps.foo.outputs.random-number }}
+        shell: bash
+
       - name: Set up Node.js v${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
