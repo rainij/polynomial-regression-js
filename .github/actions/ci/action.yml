@@ -1,9 +1,12 @@
 name: 'CI'
+
 description: 'Build and test source code. Generate documentation.'
+
 inputs:
   node-version:  # e.g. '16'
     description: 'The node version to use'
     required: true
+
 runs:
   using: "composite"
   steps:

@@ -14,8 +14,8 @@ jobs:
         node-version: ['14', '16', '18']
 
     steps:
-      # TODO
       - uses: actions/checkout@v3
+
       - name: Run CI
         id: ci
         uses: ./.github/actions/ci
