@@ -16,6 +16,10 @@ on:
       - switch-travis-to-github-actions
   workflow_dispatch:
 
+# github.ref_name
+# github.ref_type
+# github.ref
+
 env:
   NODE_VERSION: '16'
 
@@ -55,6 +59,8 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: docs
+
+      - run: ls -ahl .
 
       - name: Deploy Doc
         uses: peaceiris/actions-gh-pages@v3
