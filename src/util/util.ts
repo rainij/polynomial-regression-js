@@ -1,1 +1,0 @@
-export class RegressionError extends Error {}
