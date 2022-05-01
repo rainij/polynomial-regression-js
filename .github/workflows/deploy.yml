@@ -6,7 +6,7 @@ on:
       - '*'
       - '!master'
       # TODO
-      - '!switch-travis-to-github-actions'
+#      - '!switch-travis-to-github-actions'
     tags:
       - '*'
 
