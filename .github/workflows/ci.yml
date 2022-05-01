@@ -1,4 +1,4 @@
-name: Node.js CI
+name: Pull Request
 
 on:
   push:
@@ -16,12 +16,15 @@ jobs:
         node-version: ['14', '16', '18']
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up Node.js v${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm ci
-    - run: npm run build
-    - run: npm test
+      - uses: actions/checkout@v3
+
+      - name: Set up Node.js v${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - run: npm ci
+      - run: npm run build
+      - run: npm run test
+      - run: npm run doc
