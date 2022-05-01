@@ -14,23 +14,10 @@ jobs:
         node-version: ['14', '16', '18']
 
     steps:
-      - uses: actions/checkout@v3
-
       # TODO
-      - id: ci
+      - name: Run CI
+        id: ci
         uses: ./.github/actions/ci
         with:
-          who-to-greet: 'Reinhard Stahn'
-      - run: echo random-number ${{ steps.foo.outputs.random-number }}
-        shell: bash
-
-      - name: Set up Node.js v${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'
 
-      - run: npm ci
-      - run: npm run build
-      - run: npm run test
-      - run: npm run doc

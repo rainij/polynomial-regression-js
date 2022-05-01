@@ -1,23 +1,25 @@
-name: 'Hello World'
-description: 'Greet someone'
+name: 'CI'
+description: 'Checkout repo. Build and test source code. Generate documentation.'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  node-version:  # e.g. '16'
+    description: 'The node version to use'
     required: true
-    default: 'World'
-outputs:
-  random-number:
-    description: "Random number"
-    value: ${{ steps.random-number-generator.outputs.random-id }}
 runs:
   using: "composite"
   steps:
-    - run: echo Hello ${{ inputs.who-to-greet }}.
+    - uses: actions/checkout@v3
+
+    - name: Set up Node.js v${{ inputs.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: 'npm'
+
+    - run: npm ci
       shell: bash
-    - id: random-number-generator
-      run: echo "::set-output name=random-number::$(echo $RANDOM)"
+    - run: npm run build
       shell: bash
-    - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
+    - run: npm run test
       shell: bash
-    - run: echo "Goodbye!"
+    - run: npm run doc
       shell: bash
