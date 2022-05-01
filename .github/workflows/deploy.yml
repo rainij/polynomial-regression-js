@@ -1,0 +1,37 @@
+name: Deploy
+
+on:
+  push:
+    branches: [ master ]
+    tags:
+      - '*'
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: ['16']
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Node.js v${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run doc
+      - name: Deploy Doc
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          # For this to work the GITHUB_TOKEN needs read/write permissions. See
+          # the action-settings in github!
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # Temporarily we use gh-pages-2 instead of gh-pages until next
+          # release.
+          publish_branch: gh-pages-2
+          publish_dir: ./docs
