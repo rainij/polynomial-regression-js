@@ -7,9 +7,7 @@ concurrency:
 on:
   push:
     branches:
-      # TODO
       - master
-      - switch-travis-to-github-actions
   workflow_dispatch:
 
 env:
