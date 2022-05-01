@@ -2,8 +2,9 @@ name: Deploy
 
 on:
   push:
-#    branches:
-#      - master
+    branches-ignore:
+      - '*'
+      - '!master'
 ##      - switch-travis-to-github-actions
     tags:
       - '*'
