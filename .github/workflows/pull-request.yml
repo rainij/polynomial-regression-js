@@ -1,0 +1,24 @@
+name: Pull Request
+
+on:
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        # Node.js release schedule: https://nodejs.org/en/about/releases/
+        node-version: ['14', '16', '18']
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run CI
+        id: ci
+        uses: ./.github/actions/ci
+        with:
+          node-version: ${{ matrix.node-version }}
+

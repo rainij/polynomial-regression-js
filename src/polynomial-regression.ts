@@ -2,7 +2,9 @@ import { SVD, Matrix } from 'ml-matrix'
 
 import { PolynomialFeatures, PolynomialFeaturesConfig } from './polynomial-features'
 
-/** For internal use only */
+/**
+ * For internal use only
+ */
 export type PolynomialRegressorConfig = {weights: number[][], polyFeatures: PolynomialFeaturesConfig};
 
 /**
@@ -84,7 +86,8 @@ export class PolynomialRegressor {
     return y;
   }
 
-  /** Saves configuration to a simple option-bag
+  /**
+   * Saves configuration to a simple option-bag
    *
    * The configuration specifies the internal state of a PolynomialRegressor
    * completely. Hence the config of a fitted model can be used to save the

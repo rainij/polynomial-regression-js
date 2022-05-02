@@ -1,16 +1,9 @@
 ### folders
 .vscode
 node_modules
-dist/*
+dist
 docs
 
-### matching
+### other
 *.log
 *.tgz
-
-### files
-package-lock.json
-
-### inverse
-!dist/.gitkeep
-!dist/readme.md

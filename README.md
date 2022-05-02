@@ -2,11 +2,10 @@
   regression-multivariate-polynomial
 </h1>
 
-[![build status][travis-image]][travis-url]
 [![npm version][npm-image]][npm-url]
 [![npm download][download-image]][npm-url]
 
-**regression-multivariate-polynomial** is a javascript library, written in typescript. It provides a class [PolynomialRegressor][doc-polynomial-regressor-url] for multivariate polynomial regression and a class [PolynomialFeatures][doc-polynomial-features-url] for transforming input features [x1, x2, ...] into polynomial features [..., x1^k1 * x2^k2..., ...].
+**regression-multivariate-polynomial** is a javascript/typescript library for linear and polynomial regression in multiple variables. It provides a class [PolynomialRegressor][doc-polynomial-regressor-url] for multivariate polynomial regression and a class [PolynomialFeatures][doc-polynomial-features-url] for transforming input features [x<sub>1</sub>, x<sub>2</sub>, ..., x<sub>n</sub>] into polynomial features [..., x<sub>1</sub><sup>k<sub>1</sub></sup> x<sub>2</sub><sup>k<sub>2</sub></sup> ... x<sub>n</sub><sup>k<sub>n</sub></sup>, ...].
 
 # Installation
 
@@ -54,11 +53,6 @@ API [documentation][doc-url] built by TypeDoc.
 # License
 
 [MIT](./LICENSE)
-
-
-[travis-url]: https://travis-ci.com/Rainij/regression-multivariate-polynomial
-
-[travis-image]: https://img.shields.io/travis/com/Rainij/regression-multivariate-polynomial.svg
 
 [npm-url]: https://www.npmjs.com/package/regression-multivariate-polynomial
 
