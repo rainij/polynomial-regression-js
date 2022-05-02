@@ -28,13 +28,13 @@
   },
   "homepage": "https://Rainij.github.io/regression-multivariate-polynomial",
   "devDependencies": {
-    "@types/jest": "^24.0.13",
-    "jest": "^24.8.0",
-    "ts-jest": "^24.0.2",
+    "@types/jest": "^27.4.1",
+    "jest": "^27.5.1",
+    "ts-jest": "^27.1.4",
     "typedoc": "^0.22.15",
     "typescript": "^4.6.4"
   },
   "dependencies": {
-    "ml-matrix": "^6.0.0"
+    "ml-matrix": "^6.10.0"
   }
 }
