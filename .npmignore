@@ -3,6 +3,8 @@ node_modules
 package-lock.json
 
 # project files
+.github
+.nvmrc
 .vscode
 CHANGELOG.md
 data
