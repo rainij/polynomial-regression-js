@@ -4,6 +4,7 @@ package-lock.json
 
 # project files
 .vscode
+CHANGELOG.md
 data
 docs
 src
