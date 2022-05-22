@@ -1,7 +1,7 @@
 {
-  "name": "regression-multivariate-polynomial",
+  "name": "polynomial-regression-js",
   "version": "1.2.0",
-  "description": "JavaScript library for polynomial regression, written in TypeScript.",
+  "description": "JavaScript/TypeScript library for multivariate polynomial regression.",
   "main": "dist/index.js",
   "scripts": {
     "test": "jest --verbose",
@@ -11,22 +11,23 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Rainij/regression-multivariate-polynomial.git"
+    "url": "git+https://github.com/rainij/polynomial-regression-js.git"
   },
   "keywords": [
+    "multivariate",
     "regression",
+    "polynomial",
     "ml",
     "machine learning",
-    "polynomial",
     "typescript",
     "javascript"
   ],
   "author": "Reinhard Stahn",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Rainij/regression-multivariate-polynomial/issues"
+    "url": "https://github.com/rainij/polynomial-regression-js/issues"
   },
-  "homepage": "https://Rainij.github.io/regression-multivariate-polynomial",
+  "homepage": "https://rainij.github.io/polynomial-regression-js",
   "devDependencies": {
     "@types/jest": "^27.4.1",
     "jest": "^27.5.1",
