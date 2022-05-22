@@ -9,7 +9,7 @@
 
 # Installation
 
-`npm install --save polynomial-regression-js`
+`npm install --save @rainij/polynomial-regression-js`
 
 # Usage
 
@@ -54,14 +54,14 @@ API [documentation][doc-url] built by TypeDoc.
 
 [MIT](./LICENSE)
 
-[npm-url]: https://www.npmjs.com/package/regression-multivariate-polynomial
+[npm-url]: https://www.npmjs.com/package/@rainij/polynomial-regression-js
 
-[npm-image]: https://img.shields.io/npm/v/regression-multivariate-polynomial.svg
+[npm-image]: https://img.shields.io/npm/v/@rainij/polynomial-regression-js.svg
 
-[download-image]: https://img.shields.io/npm/dm/regression-multivariate-polynomial.svg
+[download-image]: https://img.shields.io/npm/dm/@rainij/polynomial-regression-js.svg
 
-[doc-url]: https://rainij.github.io/regression-multivariate-polynomial/index.html
+[doc-url]: https://rainij.github.io/polynomial-regression-js/
 
-[doc-polynomial-regressor-url]: https://rainij.github.io/regression-multivariate-polynomial/classes/_polynomial_regression_.polynomialregressor.html
+[doc-polynomial-regressor-url]: https://rainij.github.io/polynomial-regression-js/classes/PolynomialRegressor.html
 
-[doc-polynomial-features-url]: https://rainij.github.io/regression-multivariate-polynomial/classes/_polynomial_features_.polynomialfeatures.html
+[doc-polynomial-features-url]: https://rainij.github.io/polynomial-regression-js/classes/PolynomialFeatures.html
