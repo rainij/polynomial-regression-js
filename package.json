@@ -1,5 +1,5 @@
 {
-  "name": "polynomial-regression-js",
+  "name": "@rainij/polynomial-regression-js",
   "version": "1.2.0",
   "description": "JavaScript/TypeScript library for multivariate polynomial regression.",
   "main": "dist/index.js",
