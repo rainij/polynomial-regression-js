@@ -16,11 +16,11 @@
 ## PolynomialRegressor
 
 ```ts
-import { PolynomialRegressor } from 'polynomial-regression-js';
+import { PolynomialRegressor } from '@rainij/polynomial-regression-js';
 
-// Y0 = X0^2 + 2*X0X1, Y1 = X1^2 + 5*X0 + 1
+// Y0 = X0^2 + 2*X0*X1, Y1 = X1^2 + 5*X0 + 1
 // Quadratric functions with two inputs need (at least) seven supporting points:
-const x = [[0, 0], [1, 0], [2, 0], [0, 1], [0, 2], [1,1], [2,2]];
+const x = [[0, 0], [1, 0], [2, 0], [0, 1], [0, 2], [1, 1], [2, 2]];
 const y = [[0, 1], [1, 6], [4, 11], [0, 2], [0, 5], [3, 7], [12, 15]];
 
 // Search for a polynomial model of degree = 2.
@@ -33,7 +33,7 @@ console.log(model.predict([[3, 3]]));
 ## PolynomialFeatures
 
 ```ts
-import { PolynomialFeatures } from 'polynomial-regression-js';
+import { PolynomialFeatures } from '@rainij/polynomial-regression-js';
 
 const x = [[3, 2]] // Two features: [[a, b]]
 
