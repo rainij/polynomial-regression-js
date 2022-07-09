@@ -25,8 +25,17 @@ export function* combinationsWithRepitition<T>(iterable: Iterable<T>, k: number)
   const pool = Array.from(iterable);
   const maxi = pool.length-1;
 
-  let indices: number[] = Array.from(Array(k), () => 0);
-  let next: T[] = Array.from(Array(k), () => pool[0]);
+  if (k < 0 || k % 1 !== 0) {
+    throw new Error("k must be a non-negative integer.")
+  }
+
+  if (k > 0 && pool[0] === undefined) {
+    throw new Error("If k is non-zero, iterable is not allowed to be empty.")
+  }
+
+  const indices: number[] = Array.from(Array(k), () => 0);
+  const next: T[] = indices.map(() => pool[0]!);
+
   yield next;
 
   outerLoop:
@@ -35,10 +44,10 @@ export function* combinationsWithRepitition<T>(iterable: Iterable<T>, k: number)
     while (indices[n] === maxi) { ++n; }
     if (n === k) break outerLoop;
     const current = indices[n] += 1;
-    next[n] = pool[current];
+    next[n] = pool[current]!;
     while (--n >= 0) {
       indices[n] = current;
-      next[n] = pool[current];
+      next[n] = pool[current]!;
     }
     yield next;
   }
@@ -58,7 +67,7 @@ export function* combinationsWithRepitition<T>(iterable: Iterable<T>, k: number)
  * without making the new combination invalid (and do that), until this is
  * impossible (then all possible k-combinations are visited).
  *
- * Return null in case k > length of iterable
+ * Throws in case k > length of iterable
  *
  * Remark: If n is the length of iterable, the number of generated
  * k-combinations is given by the binomal coefficient n over k.
@@ -72,10 +81,12 @@ export function* combinationsWithRepitition<T>(iterable: Iterable<T>, k: number)
 export function* combinations<T>(iterable: Iterable<T>, k: number) {
   const pool = Array.from(iterable);
 
-  if (k > pool.length || k < 0) return [];
+  if (k > pool.length || k < 0 || k % 1 !== 0) {
+    throw new Error("k must be in {0, 1, 2, ..., n}, where n is the length of the iterable.")
+  }
 
-  let indices: number[] = Array.from({length: k}, (_, k) => k);
-  let next: T[] = Array.from({length: k}, (_, k) => pool[k]);
+  const indices: number[] = Array.from({length: k}, (_, i) => i);
+  const next: T[] = indices.map(i => pool[i]!);
   yield next;
 
   while (true) {
@@ -83,10 +94,10 @@ export function* combinations<T>(iterable: Iterable<T>, k: number) {
     while (indices[n] === pool.length - k + n) { --n; };
     if (n === -1) break;
     ++indices[n];
-    next[n] = pool[indices[n]];
+    next[n] = pool[indices[n]!]!;
     while (++n < k) {
-      indices[n] = indices[n-1] + 1;
-      next[n] = pool[indices[n]];
+      indices[n] = indices[n-1]! + 1;
+      next[n] = pool[indices[n]!]!;
     }
     yield next;
   }
