@@ -14,7 +14,7 @@
     "useUnknownInCatchVariables": true,
     "noImplicitAny": true,
     "noImplicitOverride": true,
-    "noImplicitReturns": false,
+    "noImplicitReturns": true,
     "noImplicitThis": true,
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": false,

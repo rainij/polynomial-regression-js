@@ -51,6 +51,8 @@ export function* combinationsWithRepitition<T>(iterable: Iterable<T>, k: number)
     }
     yield next;
   }
+
+  return;
 }
 
 /**
