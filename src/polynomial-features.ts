@@ -30,10 +30,11 @@ export type PolynomialFeaturesConfig = { degree: number, homogeneous: boolean,
  * same in each feature vector of the list to be *transformed()*.
  */
 export class PolynomialFeatures {
-  private _degree: number;
-  private _nFeaturesIn: number;
-  private _homogeneous: boolean;
-  private _interactionOnly: boolean;
+  // TODO Fix bad design: The "!" should not be necessary!!!
+  private _degree!: number;
+  private _nFeaturesIn!: number;
+  private _homogeneous!: boolean;
+  private _interactionOnly!: boolean;
 
   /**
    * Basic configuration. You can skip configuration by providing no arguments.

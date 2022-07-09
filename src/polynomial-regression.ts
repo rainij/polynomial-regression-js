@@ -20,8 +20,9 @@ export type PolynomialRegressorConfig = {weights: number[][], polyFeatures: Poly
  * regression.
  */
 export class PolynomialRegressor {
-  private _polyFeatures: PolynomialFeatures;
-  private _weights: number[][];
+  // TODO Fix bad design: The "!" should not be necessary!!!
+  private _polyFeatures!: PolynomialFeatures;
+  private _weights!: number[][];
 
   /**
    * Basic configuration. You can skip configuration by providing no arguments.
