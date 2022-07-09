@@ -160,8 +160,8 @@ describe('Tests for fit and transform methods', () => {
     const degree = 0;
     const inputs = [[[]], [[2]], [[3, 2]], [[5, 3, 2]]];
     const desiredOutput = [[1]]
-    
-    const flags = [[true, true], [true, false], [false, true], [false, false]];
+
+    const flags = [[true, true], [true, false], [false, true], [false, false]] as const;
 
     for (const flag of flags) {
       const homogeneous = flag[0];
@@ -178,7 +178,7 @@ describe('Error handling', () => {
   it('Detect invalid config (from constructor)', () => {
     const cases: {pF: PolynomialFeatures, x: number[][]}[] = [];
     const dummy = [[0, 8, 15]];
-    
+
     cases.push({pF: new PolynomialFeatures(-1), x: dummy});
     cases.push({pF: new PolynomialFeatures(3.14), x: dummy});
     cases.push({pF: new PolynomialFeatures(3, true, true), x: [[1, 2]]});

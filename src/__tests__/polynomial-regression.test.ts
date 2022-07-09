@@ -20,11 +20,11 @@ function expectToBeCloseTo(ypredict: number[][], ytest: number[][],
 numDigits: number = 6) {
 
   expect(ytest.length).toStrictEqual(ypredict.length);
-  expect(ytest[0].length).toStrictEqual(ypredict[0].length);
+  expect(ytest[0]!.length).toStrictEqual(ypredict[0]!.length);
 
   for (let i=0; i < ytest.length; ++i) {
-    for (let j=0; j < ytest[0].length; ++j) {
-      expect(ypredict[i][j]).toBeCloseTo(ytest[i][j], numDigits);
+    for (let j=0; j < ytest[0]!.length; ++j) {
+      expect(ypredict[i]![j]).toBeCloseTo(ytest[i]![j]!, numDigits);
     }
   }
 }
@@ -78,7 +78,7 @@ describe('Exactly polynomial laws and small data sets', () => {
   it('(2,2)-variate, degree 1', () => {
     const degree = 1;
 
-    // y = [3*x1 + 5.5*x2, -1.2*x1 + x2 - 1.23] 
+    // y = [3*x1 + 5.5*x2, -1.2*x1 + x2 - 1.23]
     const xtrain = [[1, 2], [3.5, 7.9], [-3, 1.3], [7, -7]]; // 3 would be enough
     const ytrain = [[14.0, -0.43], [53.95, 2.47], [-1.85, 3.67], [-17.5, -16.63]];
 
@@ -121,7 +121,7 @@ describe('Interaction only, small data sets', () => {
   it('Univariate, degree 1', () => {
     const degree = 1;
 
-    // y = x**2 
+    // y = x**2
     const xtrain = [[0], [1], [2]]; // more than enough data
     const ytrain = [[0], [1], [4]];
 

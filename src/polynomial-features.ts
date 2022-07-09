@@ -30,10 +30,11 @@ export type PolynomialFeaturesConfig = { degree: number, homogeneous: boolean,
  * same in each feature vector of the list to be *transformed()*.
  */
 export class PolynomialFeatures {
-  private _degree: number;
-  private _nFeaturesIn: number;
-  private _homogeneous: boolean;
-  private _interactionOnly: boolean;
+  // TODO Fix bad design: The "!" should not be necessary!!!
+  private _degree!: number;
+  private _nFeaturesIn!: number;
+  private _homogeneous!: boolean;
+  private _interactionOnly!: boolean;
 
   /**
    * Basic configuration. You can skip configuration by providing no arguments.
@@ -106,7 +107,11 @@ export class PolynomialFeatures {
    * Call this method before transform(...). Afterwards the transform(...)
    * method will only accept input with the correct number of features.
   */
-  fit(x: number[][]) { // TODO probably one could improve this
+  fit(x: number[][]) {
+    if (x[0] === undefined) {
+      throw new RegressionError("Fitting with empty dataset is not allowed");
+    }
+
     this._nFeaturesIn = x[0].length;
     this.assertValidConfig(); // After fitting we should have a valid config
   }
@@ -130,13 +135,13 @@ export class PolynomialFeatures {
       const ximod = this.homogenous || this.interactionOnly ? xi.concat() : xi.concat([1]);
       const degrees = this.interactionOnly && !this.homogenous ? [...Array(this.degree+1).keys()] : [this.degree]
       const combis = this._interactionOnly ? combinations : combinationsWithRepitition;
-      
+
       for(const degree of degrees) {
         for (const comb of combis(ximod, degree)) {
           yi.push(comb.reduce((p,c) => p*=c, 1));
         }
       }
-      
+
       y.push(yi)
     }
 

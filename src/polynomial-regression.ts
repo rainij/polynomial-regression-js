@@ -1,6 +1,7 @@
 import { SVD, Matrix } from 'ml-matrix'
 
 import { PolynomialFeatures, PolynomialFeaturesConfig } from './polynomial-features'
+import { RegressionError } from './util/util';
 
 /**
  * For internal use only
@@ -19,8 +20,9 @@ export type PolynomialRegressorConfig = {weights: number[][], polyFeatures: Poly
  * regression.
  */
 export class PolynomialRegressor {
-  private _polyFeatures: PolynomialFeatures;
-  private _weights: number[][];
+  // TODO Fix bad design: The "!" should not be necessary!!!
+  private _polyFeatures!: PolynomialFeatures;
+  private _weights!: number[][];
 
   /**
    * Basic configuration. You can skip configuration by providing no arguments.
@@ -48,7 +50,13 @@ export class PolynomialRegressor {
 
   /** Number of output features. */
   get nFeaturesOut() {
-    return this._weights ? this._weights[0].length : undefined;
+    const weight0 = this._weights[0];
+
+    if (weight0) {
+      return weight0.length;
+    }
+
+    throw new RegressionError("Cannot determine number of output features before fitting.");
   }
 
   /** The weight matrix of the underlying linear regression model. */
@@ -79,11 +87,7 @@ export class PolynomialRegressor {
    */
   predict(x: number[][]): number[][] {
     const xpoly = this._polyFeatures.transform(x);
-    let y: number[][] = [];
-    for (let i = 0; i < x.length; ++i) {
-      y.push(this.predictPoly(xpoly[i]));
-    }
-    return y;
+    return xpoly.map(xp => this.predictPoly(xp));
   }
 
   /**
@@ -94,10 +98,11 @@ export class PolynomialRegressor {
    * model to a file.
   */
   get config(): PolynomialRegressorConfig {
-    return {weights: this.weights, polyFeatures: this.polyFeatures ? this.polyFeatures.config : undefined};
+    return {weights: this.weights, polyFeatures: this._polyFeatures?.config};
   }
 
-  /** Loads configuration from simple option-bag.
+  /**
+   * Loads configuration from simple option-bag.
    *
    * @param config The configuration to load from.
    */
@@ -107,12 +112,11 @@ export class PolynomialRegressor {
     this._polyFeatures.fromConfig(config.polyFeatures)
   }
 
-  /** For internal use only. */
   private predictPoly(xpoly: number[]): number[] {
     let y = Array.from(Array(this.nFeaturesOut), () => 0);
     for (let i = 0; i < xpoly.length; ++i) {
       for (let j = 0; j < this.nFeaturesOut; ++j) {
-        y[j] += this._weights[i][j] * xpoly[i];
+        y[j] += this._weights[i]![j]! * xpoly[i]!;
       }
     }
     return y;
