@@ -12,7 +12,7 @@
     "strictFunctionTypes": true,
     "strictPropertyInitialization": true,
     "useUnknownInCatchVariables": true,
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "noImplicitOverride": true,
     "noImplicitReturns": false,
     "noImplicitThis": true,
