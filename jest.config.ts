@@ -4,13 +4,13 @@ const config: Config.InitialOptions = {
   roots: [
     "<rootDir>/src"
   ],
-  // transform: {
-  //   "^.+\\.tsx?$": "ts-jest"
-  // },
+  transform: {},
+  extensionsToTreatAsEsm: [".ts"],
   preset: "ts-jest",
   globals: {
     "ts-jest": {
-      tsconfig: "tsconfig.test.json"
+      tsconfig: "tsconfig.test.json",
+      useESM: true
     }
   }
 };
