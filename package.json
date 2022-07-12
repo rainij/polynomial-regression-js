@@ -32,6 +32,7 @@
   "devDependencies": {
     "@types/jest": "^28.1.4",
     "jest": "^28.1.2",
+    "jest-ts-webcompat-resolver": "^1.0.0",
     "ts-jest": "^28.0.5",
     "ts-node": "^10.8.2",
     "typedoc": "^0.22.15",
