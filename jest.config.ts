@@ -7,7 +7,9 @@ const config: Config.InitialOptions = {
   transform: {},
   extensionsToTreatAsEsm: [".ts"],
   preset: "ts-jest",
-  resolver: "jest-ts-webcompat-resolver",
+  moduleNameMapper: {
+    "(.+)\\.js": "$1"
+  },
   globals: {
     "ts-jest": {
       tsconfig: "tsconfig.test.json",
