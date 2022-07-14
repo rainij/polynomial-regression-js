@@ -1,7 +1,7 @@
-import { PolynomialRegressor } from '../index'
+import { PolynomialRegressor } from '../index.js'
 
-import * as data1 from '../../data/example1'
-import * as data2 from '../../data/example2'
+import * as data1 from '../../data/example1.js'
+import * as data2 from '../../data/example2.js'
 
 /// Auxiliary function
 
