@@ -4,18 +4,16 @@ const config: Config.InitialOptions = {
   roots: [
     "<rootDir>/src"
   ],
-  transform: {},
-  extensionsToTreatAsEsm: [".ts"],
   preset: "ts-jest",
   moduleNameMapper: {
+    // Jest does not like the file extension ".js"
     "(.+)\\.js": "$1"
   },
   globals: {
     "ts-jest": {
       tsconfig: "tsconfig.test.json",
-      useESM: true
     }
-  }
+  },
 };
 
 export default config;
