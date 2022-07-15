@@ -1,4 +1,4 @@
-import { combinations, combinationsWithRepitition } from '../util/itertools.js'
+import { combinations, combinationsWithRepitition } from './itertools.js'
 
 /// Auxiliary Stuff
 
