@@ -6,17 +6,15 @@
     "moduleResolution": "node",
     "declaration": true,
     "removeComments": false,
-    "alwaysStrict": true,
-    "strictNullChecks": true,
-    "strictBindCallApply": true,
-    "strictFunctionTypes": true,
-    "strictPropertyInitialization": true,
-    "useUnknownInCatchVariables": true,
-    "noImplicitAny": true,
+
+    "strict": true,
+
+    /* Additional Checks */
     "noImplicitOverride": true,
     "noImplicitReturns": true,
-    "noImplicitThis": true,
     "noUncheckedIndexedAccess": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "exactOptionalPropertyTypes": true,
   },
   "include": [
