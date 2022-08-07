@@ -81,6 +81,7 @@ export function* combinationsWithRepitition<T>(iterable: Iterable<T>, k: number)
  * @param k The length of the combinations: 1, 2, 3, ...
  */
 export function* combinations<T>(iterable: Iterable<T>, k: number) {
+  // TODO it is not really helpfull to have an iterable as input
   const pool = Array.from(iterable);
 
   if (k > pool.length || k < 0 || k % 1 !== 0) {
@@ -90,6 +91,9 @@ export function* combinations<T>(iterable: Iterable<T>, k: number) {
   const indices: number[] = Array.from({length: k}, (_, i) => i);
   const next: T[] = indices.map(i => pool[i]!);
   yield next;
+
+  // TODO this code contains a serious error: each yielded value is the same
+  // object 'next'! We want a new object in each iteration.
 
   while (true) {
     let n = k-1;
