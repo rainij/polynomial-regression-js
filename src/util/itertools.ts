@@ -23,31 +23,32 @@ export function* combinationsWithRepitition<T>(iterable: Iterable<T>, k: number)
   if (k < 0) return [];
 
   const pool = Array.from(iterable);
-  const maxi = pool.length-1;
+  const max_index = pool.length - 1;
 
   if (k < 0 || k % 1 !== 0) {
     throw new Error("k must be a non-negative integer.")
   }
 
-  if (k > 0 && pool[0] === undefined) {
+  if (k > 0 && pool.length === 0) {
     throw new Error("If k is non-zero, iterable is not allowed to be empty.")
   }
 
   const indices: number[] = Array.from(Array(k), () => 0);
-  const next: T[] = indices.map(() => pool[0]!);
+  let next: T[] = indices.map((_, i) => pool[indices[i]]);
 
   yield next;
 
   outerLoop:
   while (true) {
     let n = 0;
-    while (indices[n] === maxi) { ++n; }
+    while (indices[n] === max_index) { ++n; }
     if (n === k) break outerLoop;
     const current = indices[n] += 1;
-    next[n] = pool[current]!;
+    next = [...next]; // *shallow* copy
+    next[n] = pool[current];
     while (--n >= 0) {
       indices[n] = current;
-      next[n] = pool[current]!;
+      next[n] = pool[current];
     }
     yield next;
   }
