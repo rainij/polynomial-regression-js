@@ -34,7 +34,7 @@ export function* combinationsWithRepitition<T>(iterable: Iterable<T>, k: number)
   }
 
   const indices: number[] = Array.from(Array(k), () => 0);
-  let next: T[] = indices.map((_, i) => pool[indices[i]]);
+  let next: T[] = indices.map(i => pool[i]);
 
   yield next;
 
@@ -90,21 +90,19 @@ export function* combinations<T>(iterable: Iterable<T>, k: number) {
   }
 
   const indices: number[] = Array.from({length: k}, (_, i) => i);
-  const next: T[] = indices.map(i => pool[i]!);
+  let next: T[] = indices.map(i => pool[i]!);
   yield next;
 
-  // TODO this code contains a serious error: each yielded value is the same
-  // object 'next'! We want a new object in each iteration.
-
   while (true) {
-    let n = k-1;
+    let n = k - 1;
     while (indices[n] === pool.length - k + n) { --n; };
     if (n === -1) break;
     ++indices[n];
-    next[n] = pool[indices[n]!]!;
+    next = [...next]; // *shallow* copy
+    next[n] = pool[indices[n]];
     while (++n < k) {
-      indices[n] = indices[n-1]! + 1;
-      next[n] = pool[indices[n]!]!;
+      indices[n] = indices[n-1] + 1;
+      next[n] = pool[indices[n]];
     }
     yield next;
   }
