@@ -1,5 +1,8 @@
 /** Basic combinatorial utility. For internal use only. */
 
+// TODO the two functions are inconsistent with respect to the order in which
+// they produce the combinations. This should be corrected.
+
 /**
  * Yield all k-combinations with repition from a given sequence.
  *
