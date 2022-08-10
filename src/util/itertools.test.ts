@@ -47,7 +47,7 @@ describe('combinations: choose k of n without repitition', () => {
         desiredResult: [[1, 2, 3], [1, 2, 4], [1, 3, 4], [2, 3, 4]],
       },
     ])('case no. %#', ({k, pool, desiredResult}: TestCase) => {
-      const actualResult: number[][] = [...combinations(pool, k)];
+      const actualResult: number[][] = combinations(pool, k);
       expect(actualResult).toEqual(desiredResult);
     });
   });
@@ -58,7 +58,7 @@ describe('combinations: choose k of n without repitition', () => {
       1.3, // must be integer
       3,   // must be <= pool-size
     ])('choose k = %j', (k: number) => {
-      expect(() => [...combinations([1, 2], k)]).toThrow();
+      expect(() => combinations([1, 2], k)).toThrow();
     });
   });
 });
@@ -103,7 +103,7 @@ describe('combinationsWithRepitition: choose k of n with repitition', () => {
         ],
       },
     ])('case no. %#', ({k, pool, desiredResult}: TestCase) => {
-      const actualResult: number[][] = [...combinationsWithRepitition(pool, k)];
+      const actualResult: number[][] = combinationsWithRepitition(pool, k);
       expect(actualResult).toEqual(desiredResult);
     });
   });
@@ -114,7 +114,7 @@ describe('combinationsWithRepitition: choose k of n with repitition', () => {
       -1,  // must be >= 0
       1.3, // must be integer
     ])('choose k = %j', (k: number) => {
-      expect(() => [...combinationsWithRepitition([1, 2], k)]).toThrow();
+      expect(() => combinationsWithRepitition([1, 2], k)).toThrow();
     });
   });
 });
