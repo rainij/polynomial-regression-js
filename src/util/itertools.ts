@@ -23,17 +23,15 @@
  * @param k The length of the combinations: 1, 2, 3, ...
  */
 export function* combinationsWithRepitition<T>(iterable: Iterable<T>, k: number) {
-  if (k < 0) return [];
-
   const pool = Array.from(iterable);
   const max_index = pool.length - 1;
 
   if (k < 0 || k % 1 !== 0) {
-    throw new Error("k must be a non-negative integer.")
+    throw new Error("k must be a non-negative integer.");
   }
 
   if (k > 0 && pool.length === 0) {
-    throw new Error("If k is non-zero, iterable is not allowed to be empty.")
+    throw new Error("If k is non-zero, iterable is not allowed to be empty.");
   }
 
   const indices: number[] = Array.from(Array(k), () => 0);
@@ -89,7 +87,7 @@ export function* combinations<T>(iterable: Iterable<T>, k: number) {
   const pool = Array.from(iterable);
 
   if (k > pool.length || k < 0 || k % 1 !== 0) {
-    throw new Error("k must be in {0, 1, 2, ..., n}, where n is the length of the iterable.")
+    throw new Error("k must be in {0, 1, 2, ..., n}, where n is the length of the iterable.");
   }
 
   const indices: number[] = Array.from({length: k}, (_, i) => i);

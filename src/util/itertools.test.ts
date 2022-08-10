@@ -52,7 +52,15 @@ describe('combinations: choose k of n without repitition', () => {
     });
   });
 
-  // TODO test on invalid input, choose less then 0, fractions, k > pool size.
+  describe('invalid arguments', () => {
+    it.each([
+      -1,  // must be >= 0
+      1.3, // must be integer
+      3,   // must be <= pool-size
+    ])('choose k = %j', (k: number) => {
+      expect(() => [...combinations([1, 2], k)]).toThrow();
+    });
+  });
 });
 
 
@@ -101,4 +109,12 @@ describe('combinationsWithRepitition: choose k of n with repitition', () => {
   });
 
   // TODO test on invalid input,
+  describe('invalid arguments', () => {
+    it.each([
+      -1,  // must be >= 0
+      1.3, // must be integer
+    ])('choose k = %j', (k: number) => {
+      expect(() => [...combinationsWithRepitition([1, 2], k)]).toThrow();
+    });
+  });
 });
