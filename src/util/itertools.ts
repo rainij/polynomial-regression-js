@@ -91,7 +91,7 @@ export function* combinations<T>(iterable: Iterable<T>, k: number) {
   }
 
   const indices: number[] = Array.from({length: k}, (_, i) => i);
-  let next: T[] = indices.map(i => pool[i]!);
+  let next: T[] = indices.map(i => pool[i]);
   yield next;
 
   while (true) {

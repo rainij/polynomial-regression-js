@@ -9,7 +9,7 @@ interface TestCase {
 
 
 describe('combinations: choose k of n without repitition', () => {
-  describe('valid input', () => {
+  describe('valid arguments', () => {
     it.each([
       {
         k: 0,
@@ -65,7 +65,7 @@ describe('combinations: choose k of n without repitition', () => {
 
 
 describe('combinationsWithRepitition: choose k of n with repitition', () => {
-  describe('valid input', () => {
+  describe('valid arguments', () => {
     it.each([
       {
         k: 0,
