@@ -1,5 +1,10 @@
 /** Basic combinatorial utility. For internal use only. */
 
+import { Primitive } from "./util.js";
+
+// The combinations-functions below only allow primitive types as template
+// argument since we don't want to deal with deep copies.
+
 // TODO the two functions are inconsistent with respect to the order in which
 // they produce the combinations. This should be corrected.
 
@@ -22,7 +27,7 @@
  * @param pool A finite sequence
  * @param k The length of the combinations: 1, 2, 3, ...
  */
-export function combinationsWithRepitition<T>(pool: readonly T[], k: number) {
+export function combinationsWithRepitition<T extends Primitive>(pool: readonly T[], k: number) {
   const max_index = pool.length - 1;
 
   if (k < 0 || k % 1 !== 0) {
@@ -82,7 +87,7 @@ export function combinationsWithRepitition<T>(pool: readonly T[], k: number) {
  * @param pool A finite sequence
  * @param k The length of the combinations: 1, 2, 3, ...
  */
-export function combinations<T>(pool: readonly T[], k: number) {
+export function combinations<T extends Primitive>(pool: readonly T[], k: number) {
   if (k > pool.length || k < 0 || k % 1 !== 0) {
     throw new Error("k must be in {0, 1, 2, ..., n}, where n is the length of the pool.");
   }
