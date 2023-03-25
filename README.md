@@ -5,7 +5,17 @@
 [![npm version][npm-image]][npm-url]
 [![npm download][download-image]][npm-url]
 
-**polynomial-regression-js** is a javascript/typescript library for linear and polynomial regression in multiple variables. It provides a class [PolynomialRegressor][doc-polynomial-regressor-url] for multivariate polynomial regression and a class [PolynomialFeatures][doc-polynomial-features-url] for transforming input features [x<sub>1</sub>, x<sub>2</sub>, ..., x<sub>n</sub>] into polynomial features [..., x<sub>1</sub><sup>k<sub>1</sub></sup> x<sub>2</sub><sup>k<sub>2</sub></sup> ... x<sub>n</sub><sup>k<sub>n</sub></sup>, ...].
+**polynomial-regression-js** is a typescript library for linear and polynomial regression in
+multiple variables. It provides a class [PolynomialRegressor][doc-polynomial-regressor-url] for
+multivariate polynomial regression and a class [PolynomialFeatures][doc-polynomial-features-url] for
+transforming input features [x<sub>1</sub>, x<sub>2</sub>, ..., x<sub>n</sub>] into polynomial
+features [..., x<sub>1</sub><sup>k<sub>1</sub></sup> x<sub>2</sub><sup>k<sub>2</sub></sup>
+... x<sub>n</sub><sup>k<sub>n</sub></sup>, ...].
+
+There is an old version of the library `regression-multivariate-polynomial ` [![npm
+download][download-image]][npm-url] which is still widely used. If you use it I encourage you to
+switch from the latest version of the old library to the oldest version of the new library. They are
+supposed to be identical.
 
 # Installation
 
@@ -56,9 +66,15 @@ API [documentation][doc-url] built by TypeDoc.
 
 [npm-url]: https://www.npmjs.com/package/@rainij/polynomial-regression-js
 
+[npm-url-old]: https://www.npmjs.com/package/regression-multivariate-polynomial
+
 [npm-image]: https://img.shields.io/npm/v/@rainij/polynomial-regression-js.svg
 
+[npm-image-old]: https://img.shields.io/npm/v/regression-multivariate-polynomial.svg
+
 [download-image]: https://img.shields.io/npm/dm/@rainij/polynomial-regression-js.svg
+
+[download-image-old]: https://img.shields.io/npm/dm/regression-multivariate-polynomial.svg
 
 [doc-url]: https://rainij.github.io/polynomial-regression-js/
 
