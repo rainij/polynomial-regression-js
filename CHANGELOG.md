@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.3.0 (2023-03-25)
+
+### Fixes
+
+- README contained wrong import statements. The scope `@rainij` was missing.
+- Fixed a minor bug in `itertools`.
+
+### Changes
+
+- Switch module-format from commonjs to es2015
+- Simplify interface of `itertools` utitility functions.
+
 ## 1.2.2 (2022-05-22)
 
 ### Fixes
