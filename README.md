@@ -13,9 +13,9 @@ features [..., x<sub>1</sub><sup>k<sub>1</sub></sup> x<sub>2</sub><sup>k<sub>2</
 ... x<sub>n</sub><sup>k<sub>n</sub></sup>, ...].
 
 There is an old version of the library `regression-multivariate-polynomial ` [![npm
-download][download-image]][npm-url] which is still widely used. If you use it I encourage you to
-switch from the latest version of the old library to the oldest version of the new library. They are
-supposed to be identical.
+download][download-image-old]][npm-url-old] which is still widely used. If you use it I encourage
+you to switch from the latest version of the old library to the oldest version of the new
+library. They are supposed to be identical.
 
 # Installation
 
