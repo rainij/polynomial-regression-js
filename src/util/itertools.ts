@@ -1,6 +1,6 @@
 /** Basic combinatorial utility. For internal use only. */
 
-import { Primitive } from "./util.js";
+import { Primitive } from "./util";
 
 // The combinations-functions below only allow primitive types as template
 // argument since we don't want to deal with deep copies.

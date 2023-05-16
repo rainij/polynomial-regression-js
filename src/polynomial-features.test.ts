@@ -1,6 +1,6 @@
-import { PolynomialFeatures } from './index.js'
-import { RegressionError } from './util/util.js';
-import { PolynomialFeaturesConfig } from './polynomial-features.js';
+import { PolynomialFeatures } from './index'
+import { RegressionError } from './util/util';
+import { PolynomialFeaturesConfig } from './polynomial-features';
 
 /// Auxiliary function
 

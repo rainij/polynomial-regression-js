@@ -1,7 +1,7 @@
 import { SVD, Matrix } from 'ml-matrix'
 
-import { PolynomialFeatures, PolynomialFeaturesConfig } from './polynomial-features.js'
-import { RegressionError } from './util/util.js';
+import { PolynomialFeatures, PolynomialFeaturesConfig } from './polynomial-features'
+import { RegressionError } from './util/util';
 
 /**
  * For internal use only
