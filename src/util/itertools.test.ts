@@ -1,4 +1,4 @@
-import { combinations, combinationsWithRepitition } from './itertools.js'
+import { combinations, combinationsWithRepitition } from './itertools'
 
 
 interface TestCase {

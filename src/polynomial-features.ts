@@ -1,5 +1,5 @@
-import { combinations, combinationsWithRepitition } from './util/itertools.js'
-import { RegressionError } from './util/util.js'
+import { combinations, combinationsWithRepitition } from './util/itertools'
+import { RegressionError } from './util/util'
 
 /** For internal use only */
 export type PolynomialFeaturesConfig = { degree: number, homogeneous: boolean,

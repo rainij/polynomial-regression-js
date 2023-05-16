@@ -1,7 +1,7 @@
-import { PolynomialRegressor } from './index.js'
+import { PolynomialRegressor } from './index'
 
-import * as data1 from '../data/example1.js'
-import * as data2 from '../data/example2.js'
+import * as data1 from '../data/example1'
+import * as data2 from '../data/example2'
 
 /// Auxiliary function
 
@@ -202,4 +202,3 @@ describe('Misc', () => {
     expectToBeCloseTo(ypredict, data1.testPredicted);
   });
 });
-
