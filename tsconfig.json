@@ -2,7 +2,7 @@
   "compilerOptions": {
     "outDir": "dist",
     "target": "es2015",
-    "module": "es2015",  // TODO
+    "module": "commonjs",
     "moduleResolution": "node",  // "node" needed for some reason
     "declaration": true,
     "removeComments": false,
