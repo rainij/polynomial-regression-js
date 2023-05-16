@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.3.1 (2023-05-16)
+
+### Fixes
+
+- Switch back to commonjs module-format since es2015 from v1.3.0 caused
+  problems in dependent projects.
+
 ## 1.3.0 (2023-03-25)
 
 ### Fixes
