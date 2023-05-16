@@ -1,6 +1,6 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "esModuleInterop": true,
+    "esModuleInterop": true,  // https://devblogs.microsoft.com/typescript/announcing-typescript-2-7/#easier-ecmascript-module-interoperability
   },
 }

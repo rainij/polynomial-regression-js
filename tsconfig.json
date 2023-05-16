@@ -2,8 +2,8 @@
   "compilerOptions": {
     "outDir": "dist",
     "target": "es2015",
-    "module": "es2015",
-    "moduleResolution": "node",
+    "module": "es2015",  // TODO
+    "moduleResolution": "node",  // "node" needed for some reason
     "declaration": true,
     "removeComments": false,
 
