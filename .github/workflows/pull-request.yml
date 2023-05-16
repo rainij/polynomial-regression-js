@@ -11,7 +11,7 @@ jobs:
     strategy:
       matrix:
         # Node.js release schedule: https://nodejs.org/en/about/releases/
-        node-version: ['14', '16', '18']
+        node-version: ['16', '18', '20']
 
     steps:
       - uses: actions/checkout@v3
@@ -21,4 +21,3 @@ jobs:
         uses: ./.github/actions/ci
         with:
           node-version: ${{ matrix.node-version }}
-
