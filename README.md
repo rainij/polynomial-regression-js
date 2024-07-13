@@ -12,7 +12,7 @@ and a class [PolynomialFeatures][doc-polynomial-features-url] for transforming i
 features $(x_1,x_2,\ldots,x_n)$ into polynomial features $(\ldots,x_1^{k_1}x_2^{k_2}\ldots
 x_n^{k_n},\ldots)$.
 
-[API documentation][doc-url] is built with TypeDoc.
+[API documentation][doc-url] is created using TypeDoc.
 
 # Installation
 

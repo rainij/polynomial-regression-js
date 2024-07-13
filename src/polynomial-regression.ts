@@ -14,13 +14,11 @@ export interface PolynomialRegressorConfig {
 /**
  * Model for performing multivariate polynomial regression.
  *
- * Train the model by *fit()*ing it on data available for training. Afterwards
- * *predict()*ion is possible.
+ * Train the model by using `fit`. Afterwards inference is possible via `predict`.
  *
- * The model is implemented as a pipe consisting of two steps. First the input
- * is transformed by the class PolynomialFeatures, this reduces the problem to a
- * *linear* regression problem. Hence in the second step we simply apply linear
- * regression.
+ * The model is implemented as a pipe consisting of two steps. First, the input is
+ * transformed by the class `PolynomialFeatures`. This reduces the problem to a *linear*
+ * regression problem. Hence in the second step we simply apply linear regression.
  */
 export class PolynomialRegressor {
   // TODO Fix bad design: The "!" should not be necessary!!!
@@ -30,11 +28,10 @@ export class PolynomialRegressor {
   /**
    * Basic configuration. You can skip configuration by providing no arguments.
    *
-   * In case no arguments are given you have to use the method fromConfig(...)
-   * to set up a configuration in order to use the method fit(...).
+   * In case no arguments are given you have to use the method `fromConfig` to set up a
+   * configuration in order to use the method `fit`.
    *
-   * For the exact meaning of the arguments see the documentation of
-   * PolynomialFeatures.
+   * For the exact meaning of the arguments see the documentation of `PolynomialFeatures`.
    *
    * @param degree Highest order of the monomials
    * @param homogeneous Whether to include only highest order monomials
@@ -67,7 +64,7 @@ export class PolynomialRegressor {
     return this._weights;
   }
 
-  /** Instance of PolynomialFeatures responsible for transforming the input. */
+  /** Instance of `PolynomialFeatures` responsible for transforming the input. */
   get polyFeatures() {
     return this._polyFeatures;
   }
@@ -96,9 +93,9 @@ export class PolynomialRegressor {
   /**
    * Saves configuration to a simple option-bag
    *
-   * The configuration specifies the internal state of a PolynomialRegressor
-   * completely. Hence the config of a fitted model can be used to save the
-   * model to a file.
+   * The configuration specifies the internal state of a `PolynomialRegressor`
+   * completely. Hence the config of a fitted model can be used to save the model to a
+   * file.
   */
   get config(): PolynomialRegressorConfig {
     return {weights: this.weights, polyFeatures: this._polyFeatures?.config};
