@@ -4,9 +4,12 @@ import { PolynomialFeatures, PolynomialFeaturesConfig } from './polynomial-featu
 import { RegressionError } from './util/util';
 
 /**
- * For internal use only
+ * Configuration for `PolynomialRegressor`.
  */
-export type PolynomialRegressorConfig = {weights: number[][], polyFeatures: PolynomialFeaturesConfig};
+export interface PolynomialRegressorConfig {
+  weights: number[][],
+  polyFeatures: PolynomialFeaturesConfig
+};
 
 /**
  * Model for performing multivariate polynomial regression.

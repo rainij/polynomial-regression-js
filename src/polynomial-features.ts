@@ -1,9 +1,15 @@
 import { combinations, combinationsWithRepitition } from './util/itertools'
 import { RegressionError } from './util/util'
 
-/** For internal use only */
-export type PolynomialFeaturesConfig = { degree: number, homogeneous: boolean,
-  interactionOnly: boolean, nFeaturesIn: number };
+/**
+ * Configuration for `PolynomialFeatures`.
+ */
+export interface PolynomialFeaturesConfig {
+  degree: number,
+  homogeneous: boolean,
+  interactionOnly: boolean,
+  nFeaturesIn: number
+};
 
 /**
  * Transforms feature vectors to vectors of certain monomials thereof.
