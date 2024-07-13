@@ -5,17 +5,12 @@
 [![npm version][npm-image]][npm-url]
 [![npm download][download-image]][npm-url]
 
-**polynomial-regression-js** is a typescript library for linear and polynomial regression in
-multiple variables. It provides a class [PolynomialRegressor][doc-polynomial-regressor-url] for
-multivariate polynomial regression and a class [PolynomialFeatures][doc-polynomial-features-url] for
-transforming input features [x<sub>1</sub>, x<sub>2</sub>, ..., x<sub>n</sub>] into polynomial
-features [..., x<sub>1</sub><sup>k<sub>1</sub></sup> x<sub>2</sub><sup>k<sub>2</sub></sup>
-... x<sub>n</sub><sup>k<sub>n</sub></sup>, ...].
-
-There is an old version of the library `regression-multivariate-polynomial ` [![npm
-download][download-image-old]][npm-url-old] which is still widely used. If you use it I encourage
-you to switch from the latest version of the old library to the oldest version of the new
-library. They are supposed to be identical.
+**polynomial-regression-js** is a typescript library for linear and polynomial regression
+in multiple variables. It provides a class
+[PolynomialRegressor][doc-polynomial-regressor-url] for multivariate polynomial regression
+and a class [PolynomialFeatures][doc-polynomial-features-url] for transforming input
+features $`(x_1,x_2,\ldots,x_n)`$ into polynomial features
+$`(\ldots,x_1^{k_1},x_2^{k_2},\ldots,x_n^{k_n})`$.
 
 # Installation
 
