@@ -59,8 +59,5 @@ jobs:
           # For this to work the GITHUB_TOKEN needs read/write permissions. See
           # the action-settings in github!
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          # TODO Temporarily we use gh-pages-2 instead of gh-pages until next
-          # release. If everything turns out to work fine, we come back to
-          # gh-pages.
-          publish_branch: gh-pages-2
+          publish_branch: gh-pages
           publish_dir: ./docs
