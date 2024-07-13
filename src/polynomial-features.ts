@@ -1,33 +1,34 @@
 import { combinations, combinationsWithRepitition } from './util/itertools'
 import { RegressionError } from './util/util'
 
-/** For internal use only */
-export type PolynomialFeaturesConfig = { degree: number, homogeneous: boolean,
-  interactionOnly: boolean, nFeaturesIn: number };
+/**
+ * Configuration for `PolynomialFeatures`.
+ */
+export interface PolynomialFeaturesConfig {
+  degree: number,
+  homogeneous: boolean,
+  interactionOnly: boolean,
+  nFeaturesIn: number
+};
 
 /**
  * Transforms feature vectors to vectors of certain monomials thereof.
  *
- * E.g. after setting options (degree, homogeneous, interactionOnly), and
- * *fit()*ing, *transform()*s lists of feature vectors like [a, b, c], where a,
- * b and c are numbers, into the following possible outputs
+ * Example: Consider a feature vector `[a, b, c]`. After executing `fitTransform` you get
  *
- * - [a^2, ba, ca, a, b^2, cb, b, c^2, c, 1] (degree = 2), that is, all
- *   monomials in a, b, c up to degree two.
+ * - `[a^2, ba, ca, a, b^2, cb, b, c^2, c, 1]` (`degree = 2`), that is, all monomials in
+ *   `a`, `b`, `c` up to degree two.
+ * - `[a^2, ba, ca, b^2, cb, c^2]` (`degree = 2`, `homogeneous = true`), that is, all
+ *   monomials of degree exactly equal to two.
+ * - `[ab, ac, bc]` (`degree = 2`, `homogeneous = true`, `interactionOnly = true`), that
+ *   is, all monomials of degree exactly equal to two and no feature raised to a power
+ *   larger than one.
+ * - `[ab, ac, a, bc, b, c, 1]` (`degree = 2`, `homogeneous = false`, `interactionOnly =
+ *   true`), that is, all monomials of degree at most two and no feature raised to a power
+ *   larger than one.
  *
- * - [a^2, ba, ca, b^2, cb, c^2] (degree = 2, homogeneous = true), that is, all
- *   monomials in a, b, c of degree exactly equal to two.
- *
- * - [ab, ac, bc] (degree = 2, homogeneous = true, interactionOnly = true), that
- *   is, all monomials in a, b, c of degree exactly equal to two and no feature
- *   raised to a power larger than one.
- *
- * - [ab, ac, a, bc, b, c, 1] (degree = 2, homogeneous = false, interactionOnly
- *   = true), that is, all monomials in a, b, c of degree at most two and no
- *   feature raised to a power larger than one.
- *
- * Of course, the number of features is not restricted to three, but must be the
- * same in each feature vector of the list to be *transformed()*.
+ * Of course, the number of features is not restricted to three, but must be the same in
+ * each feature vector of the list to be transformed.
  */
 export class PolynomialFeatures {
   // TODO Fix bad design: The "!" should not be necessary!!!
@@ -39,16 +40,15 @@ export class PolynomialFeatures {
   /**
    * Basic configuration. You can skip configuration by providing no arguments.
    *
-   * In case no arguments are given you have to use the method fromConfig(...)
-   * to set up a configuration in order to use the methods fit(...),
-   * transform(...) and fitTransform(...).
+   * In case no arguments are given you have to use the method `fromConfig` to set up a
+   * configuration in order to use the methods `fit`, `transform` and `fitTransform`.
    *
    * @param degree Highest order of the monomials
    * @param homogeneous Whether to include only highest order monomials
    * @param interactionOnly Whether to disallow higher powers of single features
    */
   constructor(degree?: number, homogeneous: boolean = false,
-    interactionOnly: boolean = false ) {
+    interactionOnly: boolean = false) {
 
     if (degree !== undefined) {
       this._degree = degree;
@@ -57,17 +57,17 @@ export class PolynomialFeatures {
     }
   }
 
-  /** Configuration option 'degree' */
+  /** Configuration option `degree` */
   get degree() {
     return this._degree;
   }
 
-  /** Configuration option 'homogenous' */
+  /** Configuration option `homogenous` */
   get homogenous() {
     return this._homogeneous;
   }
 
-  /** Configuration option 'interactionOnly' */
+  /** Configuration option `interactionOnly` */
   get interactionOnly() {
     return this._interactionOnly;
   }
@@ -75,7 +75,7 @@ export class PolynomialFeatures {
   /**
    * Number of input features.
    *
-   * The only configuration option which is set by the fit method.
+   * The only configuration option which is set by the `fit` method.
    */
   get nFeaturesIn() {
     return this._nFeaturesIn;
@@ -83,9 +83,8 @@ export class PolynomialFeatures {
 
   /** Saves configuration to a simple option-bag.
    *
-   * The configuration specifies the internal state of PolynomialFeatures
-   * completely. Hence the config of the transformer can be used to save it to a
-   * file.
+   * The configuration specifies the internal state of `PolynomialFeatures`
+   * completely. Hence the config of the transformer can be used to save it to a file.
   */
   get config(): PolynomialFeaturesConfig {
     return { degree: this.degree, homogeneous: this.homogenous,
@@ -104,9 +103,9 @@ export class PolynomialFeatures {
 
   /** Sets the number of input features.
    *
-   * Call this method before transform(...). Afterwards the transform(...)
-   * method will only accept input with the correct number of features.
-  */
+   * Call this method before `transform`. Afterwards the `transform` method will only
+   * accept input with the correct number of features.
+   */
   fit(x: number[][]) {
     if (x[0] === undefined) {
       throw new RegressionError("Fitting with empty dataset is not allowed");
@@ -117,7 +116,7 @@ export class PolynomialFeatures {
   }
 
   /**
-   * Returns the list of polynomial features corresponding to x.
+   * Returns the list of polynomial features corresponding to `x`.
    *
    * @param x List of features vectors (with same number of features each).
    */
@@ -149,7 +148,7 @@ export class PolynomialFeatures {
   }
 
   /**
-   * Same as applying first fit(...) and then transform(...) to x.
+   * Same as applying first `fit` and then `transform` to `x`.
    *
    * @param x List of features vectors.
    */

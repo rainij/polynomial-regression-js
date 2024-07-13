@@ -1,5 +1,14 @@
 {
   "entryPoints": ["src/index.ts"],
   "out": "docs",
-  "theme": "default"
+  "theme": "default",
+  "plugin": ["typedoc-plugin-katex"],
+  "katex": {
+    "options": {
+      "delimiters": [
+        {"left": "$$", "right": "$$", "display": true},
+        {"left": "$", "right": "$", "display": false}
+      ]
+    }
+  }
 }

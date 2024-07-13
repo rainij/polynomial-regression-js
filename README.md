@@ -5,17 +5,14 @@
 [![npm version][npm-image]][npm-url]
 [![npm download][download-image]][npm-url]
 
-**polynomial-regression-js** is a typescript library for linear and polynomial regression in
-multiple variables. It provides a class [PolynomialRegressor][doc-polynomial-regressor-url] for
-multivariate polynomial regression and a class [PolynomialFeatures][doc-polynomial-features-url] for
-transforming input features [x<sub>1</sub>, x<sub>2</sub>, ..., x<sub>n</sub>] into polynomial
-features [..., x<sub>1</sub><sup>k<sub>1</sub></sup> x<sub>2</sub><sup>k<sub>2</sub></sup>
-... x<sub>n</sub><sup>k<sub>n</sub></sup>, ...].
+**polynomial-regression-js** is a typescript library for linear and polynomial regression
+in multiple variables. It provides a class
+[PolynomialRegressor][doc-polynomial-regressor-url] for multivariate polynomial regression
+and a class [PolynomialFeatures][doc-polynomial-features-url] for transforming input
+features $(x_1,x_2,\ldots,x_n)$ into polynomial features $(\ldots,x_1^{k_1}x_2^{k_2}\ldots
+x_n^{k_n},\ldots)$.
 
-There is an old version of the library `regression-multivariate-polynomial ` [![npm
-download][download-image-old]][npm-url-old] which is still widely used. If you use it I encourage
-you to switch from the latest version of the old library to the oldest version of the new
-library. They are supposed to be identical.
+[API documentation][doc-url] is created using TypeDoc.
 
 # Installation
 
@@ -54,15 +51,6 @@ console.log(polyFeatures.fitTransform(x));
 // [ [27, 18, 9, 12, 6, 3, 8, 4, 2, 1] ]
 // That is: [ [a^3, a^2b, ab^2, ab, a, b^3, b^2, b, 1] ]
 ```
-
-# API
-
-API [documentation][doc-url] built by TypeDoc.
-
-
-# License
-
-[MIT](./LICENSE)
 
 [npm-url]: https://www.npmjs.com/package/@rainij/polynomial-regression-js
 
