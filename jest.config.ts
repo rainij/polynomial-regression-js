@@ -5,10 +5,10 @@ const config: Config.InitialOptions = {
     "<rootDir>/src"
   ],
   preset: "ts-jest",
-  globals: {
-    "ts-jest": {
-      tsconfig: "tsconfig.test.json",
-    }
+  transform: {
+    ".*\.ts": [
+      "ts-jest", {tsconfig: "tsconfig.test.json"},
+    ],
   },
 };
 
