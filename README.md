@@ -12,6 +12,8 @@ and a class [PolynomialFeatures][doc-polynomial-features-url] for transforming i
 features $(x_1,x_2,\ldots,x_n)$ into polynomial features $(\ldots,x_1^{k_1}x_2^{k_2}\ldots
 x_n^{k_n},\ldots)$.
 
+[API documentation][doc-url] is built with TypeDoc.
+
 # Installation
 
 `npm install --save @rainij/polynomial-regression-js`
@@ -49,15 +51,6 @@ console.log(polyFeatures.fitTransform(x));
 // [ [27, 18, 9, 12, 6, 3, 8, 4, 2, 1] ]
 // That is: [ [a^3, a^2b, ab^2, ab, a, b^3, b^2, b, 1] ]
 ```
-
-# API
-
-API [documentation][doc-url] built by TypeDoc.
-
-
-# License
-
-[MIT](./LICENSE)
 
 [npm-url]: https://www.npmjs.com/package/@rainij/polynomial-regression-js
 
