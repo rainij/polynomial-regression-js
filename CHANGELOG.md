@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.4.0 (2024-07-13)
+
+### Changes
+
+- Upgrade dependencies to latest versions.
+- Improve documentation a bit.
+
 ## 1.3.1 (2023-05-16)
 
 ### Fixes
